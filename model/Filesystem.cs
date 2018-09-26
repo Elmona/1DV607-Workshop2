@@ -11,9 +11,21 @@ namespace Model
 
         public List<Member> GetData()
         {
-            var data = File.ReadAllText(fileName);
-            return new List<Member>
-                (JsonConvert.DeserializeObject<List<Member>>(data));
+            if (!File.Exists(fileName))
+            {
+                Console.WriteLine("#########################################################");
+                Console.WriteLine("WARNING: ./data.json don't exist creating new.");
+                Console.WriteLine("#########################################################");
+                var data = new List<Member>();
+                SaveData(data);
+                return data;
+            }
+            else
+            {
+                var data = File.ReadAllText(fileName);
+                return new List<Member>
+                    (JsonConvert.DeserializeObject<List<Member>>(data));
+            }
         }
 
         public void SaveData(List<Member> members)
