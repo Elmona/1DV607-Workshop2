@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft;
 
 namespace BoatClub
 {
@@ -6,7 +7,12 @@ namespace BoatClub
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var fs = new Model.Filesystem();
+            var Members = new Model.MemberList(fs.ReadFile());
+
+            Members.AddMember(new Model.Member("Kalle", "Svensson", 15));
+
+            fs.SaveData(Members.getData());
         }
     }
 }
