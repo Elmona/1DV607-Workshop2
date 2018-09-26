@@ -9,7 +9,7 @@ namespace Model
     {
         private string fileName = "./data.json";
 
-        public List<Member> ReadFile()
+        public List<Member> GetData()
         {
             var data = File.ReadAllText(fileName);
             return new List<Member>

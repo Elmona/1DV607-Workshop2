@@ -8,11 +8,10 @@ namespace BoatClub
         static void Main(string[] args)
         {
             var fs = new Model.Filesystem();
-            var Members = new Model.MemberList(fs.ReadFile());
+            var members = new Model.MemberList(fs.GetData());
+            var mainView = new View.MainView(fs, members);
 
-            Members.AddMember(new Model.Member("Kalle", "Svensson", 15));
-
-            fs.SaveData(Members.getData());
+            mainView.Start();
         }
     }
 }
