@@ -2,24 +2,24 @@ namespace Model
 {
     class Member
     {
-        private string _surename;
-        private string _lastname;
+        private string _firstName;
+        private string _lastName;
         private int _age;
 
-        public Member(string surename, string lastname, int age)
+        public Member(string firstName, string lastName, int age)
         {
-            _surename = surename;
-            _lastname = lastname;
+            _firstName = firstName;
+            _lastName = lastName;
             _age = age;
         }
-        public string surename
+        public string firstName
         {
-            get { return _surename; }
+            get { return _firstName; }
         }
 
-        public string lastname
+        public string lastName
         {
-            get { return _lastname; }
+            get { return _lastName; }
         }
 
         public int age
@@ -28,6 +28,6 @@ namespace Model
         }
 
         public override string ToString() =>
-            $"Surename: {this.surename}, Lastname: {this.lastname}, Age: {this.age}";
+            $"First name: {this.firstName}, Last name: {this.lastName}, Age: {this.age}";
     }
 }
