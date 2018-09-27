@@ -4,27 +4,33 @@ namespace View
 {
     class MainView
     {
-        private Model.Filesystem fs;
-        private Model.MemberList memberList;
-
-        public MainView(Model.Filesystem Fs, Model.MemberList MemberList)
+        public enum Event
         {
-            fs = Fs;
-            memberList = MemberList;
+            None,
+            View,
+            Add
         }
 
-        public void Start()
+        public void DisplayInstructions()
         {
-            byte result;
+            Console.Clear();
+            Console.WriteLine("######################################");
+            Console.WriteLine("#      Welcome to the Boatclub.      #");
+            Console.WriteLine("######################################");
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("1. View members");
+            Console.WriteLine("2. Add member");
+            Console.Write("? ");
+        }
 
-            Console.WriteLine("Welcome to the boatclub!");
+        public Event GetEvent()
+        {
+            char c = Console.ReadKey().KeyChar;
 
-            var i = new Input("Make your choice!");
-            i.AddChoice("Do you pick the first?");
-            i.AddChoice("Or the second?");
-            result = i.Run();
+            if (c == '1') return Event.View;
+            if (c == '2') return Event.Add;
 
-            Console.WriteLine($"You picked: {result}");
+            return Event.None;
         }
     }
 }
