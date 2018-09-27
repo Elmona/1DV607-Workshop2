@@ -13,11 +13,15 @@ namespace View
             memberList = MemberList;
         }
 
+       
+
         public void Start()
         {
             byte result;
 
-            Console.WriteLine("Welcome to the boatclub!");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.WriteLine("Welcome to the Yacht club!");
 
             var inputView = new InputView("Make your choice!");
             inputView.AddChoice("Do you pick the first?");
