@@ -14,14 +14,9 @@ namespace Model
             if (!File.Exists(fileName))
             {
                 Console.WriteLine("#########################################################");
-<<<<<<< HEAD
                 Console.WriteLine("   WARNING: ./data.json don't exist creating new.");
                 Console.WriteLine("#########################################################");
 
-=======
-                Console.WriteLine("WARNING: ./data.json don't exist creating new.");
-                Console.WriteLine("#########################################################");
->>>>>>> daf45ff8f56c1f3122303b6505bcbf95c05969c9
                 var data = new List<Member>();
                 SaveData(data);
                 return data;
