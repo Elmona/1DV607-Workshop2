@@ -8,10 +8,12 @@ namespace BoatClub
         static void Main(string[] args)
         {
             var fs = new Model.Filesystem();
-            var members = new Model.MemberList(fs.GetData());
-            var mainView = new View.MainView(fs, members);
+            var m = new Model.MemberList(fs.GetData());
+            var v = new View.MainView();
 
-            mainView.Start();
+            var mc = new Controller.MainController();
+
+            while (mc.Start(v, m)) ;
         }
     }
 }
