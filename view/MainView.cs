@@ -19,10 +19,10 @@ namespace View
 
             Console.WriteLine("Welcome to the boatclub!");
 
-            var i = new Input("Make your choice!");
-            i.AddChoice("Do you pick the first?");
-            i.AddChoice("Or the second?");
-            result = i.Run();
+            var inputView = new InputView("Make your choice!");
+            inputView.AddChoice("Do you pick the first?");
+            inputView.AddChoice("Or the second?");
+            result = inputView.Run();
 
             Console.WriteLine($"You picked: {result}");
         }

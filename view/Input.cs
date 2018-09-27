@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace View
 {
-    class Input
+    class InputView
     {
         private string _message;
         private List<string> _choices = new List<string>();
 
-        public Input(string message)
+        public InputView(string message)
         {
             _message = message;
         }
