@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+ <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,5 +8,5 @@
   <ItemGroup>
     <PackageReference Include="newtonsoft.json" Version="11.0.2" />
   </ItemGroup>
-
+  <UseNETCoreGenerator>true</UseNETCoreGenerator>
 </Project>
