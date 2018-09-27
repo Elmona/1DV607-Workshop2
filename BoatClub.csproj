@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="newtonsoft.json" Version="11.0.2" />
   </ItemGroup>
- <PropertyGroup>
+  <PropertyGroup>
     <UseNETCoreGenerator>true</UseNETCoreGenerator>
   </PropertyGroup>
 </Project>
