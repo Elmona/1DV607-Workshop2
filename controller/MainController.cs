@@ -3,6 +3,12 @@ namespace Controller
 {
     class MainController
     {
+        Model.Filesystem _fs;
+        public MainController()
+        {
+            _fs = new Model.Filesystem(){};
+        }
+
         public bool Start(View.UserView v, Model.MemberList m)
         {
             v.DisplayInstructions();
@@ -23,7 +29,8 @@ namespace Controller
 
             if (e == View.UserView.Event.AddMember)
             {
-                m.AddMember(v.AddMember());
+                m.addMember(v.AddMember());
+                _fs.SaveData(m.getMemberList());
             }
 
             if (e == View.UserView.Event.Quit) 

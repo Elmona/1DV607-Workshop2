@@ -45,7 +45,7 @@ namespace View
         public Model.Member AddMember()
         {
             string name;
-            int socialNumber;
+            long socialNumber;
 
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a member.");
@@ -58,9 +58,9 @@ namespace View
             do
             {
                 Console.WriteLine("Please fill in social security number.");
-                Console.WriteLine("Format: yy-mm-dd-xxxx.");
+                Console.WriteLine("Format: yymmddxxxx.");
                 Console.Write("? ");
-            } while (!int.TryParse(Console.ReadLine(), out socialNumber));
+            } while (!long.TryParse(Console.ReadLine(), out socialNumber));
 
             return new Model.Member(name, 10, socialNumber);
         }
