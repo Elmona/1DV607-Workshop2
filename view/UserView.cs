@@ -8,7 +8,8 @@ namespace View
         {
             View,
             AddMember,
-            None
+            None,
+            Quit
         }
 
         public void DisplayInstructions()
@@ -20,6 +21,7 @@ namespace View
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("1. View members");
             Console.WriteLine("2. Add member");
+            Console.WriteLine("x. Quit");
             Console.Write("? ");
         }
 
@@ -29,6 +31,7 @@ namespace View
 
             if (inputtedCharacter == '1') return Event.View;
             if (inputtedCharacter == '2') return Event.AddMember;
+            if (inputtedCharacter == 'x') return Event.Quit;
 
             return Event.None;
         }
