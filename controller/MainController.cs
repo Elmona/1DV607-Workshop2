@@ -20,6 +20,11 @@ namespace Controller
                 m.AddMember(v.AddMember());
             }
 
+            if (e == View.UserView.Event.Quit) 
+            {
+                return false;
+            }
+
             return true;
         }
     }
