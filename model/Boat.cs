@@ -33,6 +33,10 @@ namespace Model
           }
         }
 
+      public override string ToString() {
+        return $"{this.Id.ToString()} | Boat of type {this.Type}";
+      }
+
 
 
 
