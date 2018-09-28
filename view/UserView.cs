@@ -2,7 +2,7 @@ using System;
 
 namespace View
 {
-    class MainView
+    class UserView
     {
         public enum Event
         {
@@ -23,7 +23,7 @@ namespace View
             Console.Write("? ");
         }
 
-        public Event GetEvent()
+        public Event GetInputEvent()
         {
             char inputtedCharacter = Console.ReadKey().KeyChar;
 
