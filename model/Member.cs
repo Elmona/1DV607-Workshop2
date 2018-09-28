@@ -83,6 +83,19 @@ namespace Model
             return boatFound;
         }
 
+        public Model.Boat GetBoat(int id)
+        {
+            for ( int i = 0; i < _boats.Count; i++ )
+            {
+                if (_boats[i].Id == id)
+                {
+                    // returnBoat = _boats[i];
+                    return _boats[i];
+                }
+            }
+            return null;
+        }
+
 
 
         // DEPRECATED
@@ -100,7 +113,7 @@ namespace Model
             string returnString = $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}\n";
             for (int i = 0; i < _boats.Count; i++)
             {
-                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Type - {_boats[i].Type} |\n";
+                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} | Type - {_boats[i].Type} \n";
             }
             return returnString;
         }
