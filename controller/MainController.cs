@@ -19,18 +19,29 @@ namespace Controller
 
             if (e == View.UserView.Event.ViewCompactList)
             {
-                v.ViewMembers(m.ToString());
+                v.ViewMembers(m.toStringCompact());
             }
 
              if (e == View.UserView.Event.ViewDetailedList)
             {
-                v.ViewMembers(m.ToString());
+                v.ViewMembers(m.toStringVerbose());
             }
 
             if (e == View.UserView.Event.AddMember)
             {
                 m.addMember(v.AddMember(m.getNextId()));
                 _fs.SaveData(m.getMemberList());
+            }
+
+            if (e == View.UserView.Event.RemoveMember)
+            {
+                int response = v.RemoveMember();
+                while(!m.removeMember(response))
+                {
+                    response = v.RemoveMember();
+                }
+                _fs.SaveData(m.getMemberList());
+                System.Console.WriteLine("User removed successfully!");
             }
 
             if (e == View.UserView.Event.Quit) 

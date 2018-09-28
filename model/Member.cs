@@ -105,7 +105,7 @@ namespace Model
 
         public string toStringCompact()
         {
-            return $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}";
+            return $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}\n";
         }
 
         public string toStringVerbose()
