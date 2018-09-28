@@ -29,7 +29,7 @@ namespace Controller
 
             if (e == View.UserView.Event.AddMember)
             {
-                m.addMember(v.AddMember());
+                m.addMember(v.AddMember(m.getNextId()));
                 _fs.SaveData(m.getMemberList());
             }
 

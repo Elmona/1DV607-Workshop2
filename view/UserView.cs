@@ -42,7 +42,7 @@ namespace View
             return Event.None;
         }
 
-        public Model.Member AddMember()
+        public Model.Member AddMember(int id)
         {
             string name;
             long socialNumber;
@@ -62,7 +62,7 @@ namespace View
                 Console.Write("? ");
             } while (!long.TryParse(Console.ReadLine(), out socialNumber));
 
-            return new Model.Member(name, 10, socialNumber);
+            return new Model.Member(name, id, socialNumber);
         }
 
         public void ViewMembers(string members)
@@ -76,10 +76,6 @@ namespace View
             Console.WriteLine(members);
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
-
-           
-
-
         }
 
         public void ErrorInput()
