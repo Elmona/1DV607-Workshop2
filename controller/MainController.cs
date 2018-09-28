@@ -2,22 +2,27 @@ namespace Controller
 {
     class MainController
     {
-        public bool Start(View.MainView v, Model.MemberList m)
+        public bool Start(View.UserView v, Model.MemberList m)
         {
             v.DisplayInstructions();
 
-            View.MainView.Event e;
+            View.UserView.Event e;
 
-            e = v.GetEvent();
+            e = v.GetInputEvent();
 
-            if (e == View.MainView.Event.View)
+            if (e == View.UserView.Event.View)
             {
                 v.ViewMembers(m.ToString());
             }
 
-            if (e == View.MainView.Event.AddMember)
+            if (e == View.UserView.Event.AddMember)
             {
                 m.AddMember(v.AddMember());
+            }
+
+            if (e == View.UserView.Event.Quit) 
+            {
+                return false;
             }
 
             return true;
