@@ -25,6 +25,12 @@ namespace Controller
                 return false;
             }
 
+            if (e == View.UserView.Event.None) 
+            {
+                v.ErrorInput();
+                
+            }
+
             return true;
         }
     }
