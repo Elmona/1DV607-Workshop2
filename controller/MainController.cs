@@ -44,6 +44,13 @@ namespace Controller
                 System.Console.WriteLine("User removed successfully!");
             }
 
+            if (e == View.UserView.Event.AddBoat)
+            {
+                // First, get the member object to add the boat to.
+                int userIdToAddBoat = v.GetUserId();
+                m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
+            }
+
             if (e == View.UserView.Event.Quit) 
             {
                 return false;
