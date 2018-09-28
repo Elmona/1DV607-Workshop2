@@ -9,7 +9,7 @@ namespace BoatClub
         {
             var fs = new Model.Filesystem();
             var m = new Model.MemberList(fs);
-            var v = new View.MainView();
+            var v = new View.UserView();
 
             var mc = new Controller.MainController();
 
