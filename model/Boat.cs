@@ -28,7 +28,7 @@ namespace Model
             }
             else
             {
-              throw new ArgumentOutOfRangeException("id of a boat must be a positive number! (Or not zero)");
+              throw new ArgumentOutOfRangeException("Id of a boat must be a positive number! (Or not zero)");
             }
           }
         }
