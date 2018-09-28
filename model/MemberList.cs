@@ -44,6 +44,19 @@ namespace Model
             return memberFound;
         }
 
+        public int getNextId()
+        {
+            int maxValue = 1;
+            foreach (var member in _members)
+            {
+                if (member.MemberId >= maxValue)
+                {
+                    maxValue = member.MemberId + 1;
+                }
+            }
+            return maxValue;
+        }
+
         public string toStringCompact() 
         {
             string returnString = "";

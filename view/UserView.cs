@@ -9,6 +9,7 @@ namespace View
             ViewCompactList,
             ViewDetailedList,
             AddMember,
+            RemoveMember,
             None,
             Quit
         }
@@ -25,6 +26,7 @@ namespace View
             Console.WriteLine("1. View Compact list of members");
             Console.WriteLine("2. View Detailed list of members");
             Console.WriteLine("3. Add member");
+            Console.WriteLine("4. Remove member");
             Console.WriteLine("x. Quit");
             Console.Write("? ");
             
@@ -37,6 +39,7 @@ namespace View
             if (inputtedCharacter == '1') return Event.ViewCompactList;
             if (inputtedCharacter == '2') return Event.ViewDetailedList;
             if (inputtedCharacter == '3') return Event.AddMember;
+            if (inputtedCharacter == '4') return Event.RemoveMember;
             if (inputtedCharacter == 'x') return Event.Quit;
             
             return Event.None;
@@ -62,10 +65,28 @@ namespace View
                 Console.WriteLine("--------------------------------");
                 Console.WriteLine("Please fill in social security number.");
                 Console.WriteLine("Format: yymmddxxxx.");
-                Console.Write("? ");
+                Console.Write(": ");
             } while (!long.TryParse(Console.ReadLine(), out socialNumber));
 
             return new Model.Member(name, id, socialNumber);
+        }
+
+        public int RemoveMember()
+        {
+            int memberToBeRemoved;
+
+            Console.WriteLine("\n");
+            Console.WriteLine("You chose to remove a member.");
+            Console.WriteLine("--------------------------------");
+
+            do
+            {
+                Console.WriteLine("Please fill in the id of the member you want to delete.");
+                Console.Write(": ");
+            } while (!int.TryParse(Console.ReadLine(), out memberToBeRemoved));
+
+            return memberToBeRemoved;
+
         }
 
         public void ViewMembers(string members)
