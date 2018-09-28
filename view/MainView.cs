@@ -15,7 +15,7 @@ namespace View
         {
             Console.WriteLine("");
             Console.WriteLine("######################################");
-            Console.WriteLine("#      Welcome to the Boatclub.      #");
+            Console.WriteLine("#      Welcome to the Boat club.      #");
             Console.WriteLine("######################################");
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("1. View members");
@@ -25,10 +25,10 @@ namespace View
 
         public Event GetEvent()
         {
-            char c = Console.ReadKey().KeyChar;
+            char inputtedCharacter = Console.ReadKey().KeyChar;
 
-            if (c == '1') return Event.View;
-            if (c == '2') return Event.AddMember;
+            if (inputtedCharacter == '1') return Event.View;
+            if (inputtedCharacter == '2') return Event.AddMember;
 
             return Event.None;
         }
