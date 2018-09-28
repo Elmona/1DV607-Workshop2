@@ -49,6 +49,7 @@ namespace View
         {
             string name;
             long socialNumber;
+            
 
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a member.");
@@ -60,6 +61,8 @@ namespace View
 
             do
             {
+                Console.WriteLine("");
+                Console.WriteLine("--------------------------------");
                 Console.WriteLine("Please fill in social security number.");
                 Console.WriteLine("Format: yymmddxxxx.");
                 Console.Write(": ");
@@ -83,6 +86,7 @@ namespace View
             } while (!int.TryParse(Console.ReadLine(), out memberToBeRemoved));
 
             return memberToBeRemoved;
+
         }
 
         public void ViewMembers(string members)
@@ -96,6 +100,7 @@ namespace View
             Console.WriteLine(members);
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
+
         }
 
         public void ErrorInput()
