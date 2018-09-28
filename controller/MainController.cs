@@ -10,14 +10,14 @@ namespace Controller
 
             e = v.GetEvent();
 
-            if (e == View.MainView.Event.Add)
-            {
-                return false;
-            }
-
             if (e == View.MainView.Event.View)
             {
-                return false;
+                v.ViewMembers(m.ToString());
+            }
+
+            if (e == View.MainView.Event.AddMember)
+            {
+                m.AddMember(v.AddMember());
             }
 
             return true;
