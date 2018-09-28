@@ -14,6 +14,7 @@ namespace View
 
         public void DisplayInstructions()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("");
             Console.WriteLine("######################################");
             Console.WriteLine("#      Welcome to the Boat club.      #");
@@ -32,7 +33,7 @@ namespace View
             if (inputtedCharacter == '1') return Event.View;
             if (inputtedCharacter == '2') return Event.AddMember;
             if (inputtedCharacter == 'x') return Event.Quit;
-
+            
             return Event.None;
         }
 
@@ -65,6 +66,14 @@ namespace View
             Console.WriteLine(members);
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
+        }
+
+        public void ErrorInput()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("");
+            Console.WriteLine("Error in input");
+            Console.WriteLine("Please press a character corresponding to one of the choices above.");
         }
     }
 }
