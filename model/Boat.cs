@@ -37,10 +37,5 @@ namespace Model
         return $"{this.Id.ToString()} | Boat of type {this.Type}";
       }
 
-
-
-
-    // public override string ToString() =>
-    //     $"First name: {this.firstName}, Last name: {this.lastName}, Age: {this.age}";
   }
 }

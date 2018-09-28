@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -6,13 +7,15 @@ namespace Model
     {
         private string _name;
         private int _memberId;
-        private int _socialId;
+        private long _socialId;
+        private List<Model.Boat> _boats;
 
-        public Member(string name, int memberId, int socialId)
+        public Member(string name, int memberId, long socialId)
         {
             Name = name;
             MemberId = memberId;
             SocialId = socialId;
+            _boats = new List<Boat>{};
         }
 
         public string Name 
@@ -46,7 +49,7 @@ namespace Model
             }
         }
 
-        public int SocialId
+        public long SocialId
         {
             get { return _socialId; }
             set {
@@ -60,14 +63,46 @@ namespace Model
                 }
             } 
         }
+
+        public void addBoat (Model.Boat boat)
+        {
+            _boats.Add(boat);
+        }
+
+        public bool removeBoat(int id)
+        {
+            bool boatFound = false;
+            for ( int i = 0; i < _boats.Count; i++ )
+            {
+                if (_boats[i].Id == id)
+                {
+                    boatFound = true;
+                    _boats.RemoveAt(i);
+                }
+            }
+            return boatFound;
+        }
+
+
+
         // DEPRECATED
         // TODO: use toStringCompact() and toStringVerbose() instead
         public override string ToString() =>
-            $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}";
+            $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}";
 
         public string toStringCompact()
         {
-            return $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}";
+            return $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}";
+        }
+
+        public string toStringVerbose()
+        {
+            string returnString = $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}\n";
+            for (int i = 0; i < _boats.Count; i++)
+            {
+                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Type - {_boats[i].Type} |\n";
+            }
+            return returnString;
         }
 
         
