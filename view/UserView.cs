@@ -42,10 +42,11 @@ namespace View
             return Event.None;
         }
 
-        public Model.Member AddMember()
+        public Model.Member AddMember(int id)
         {
             string name;
             long socialNumber;
+            
 
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a member.");
@@ -57,12 +58,14 @@ namespace View
 
             do
             {
+                Console.WriteLine("");
+                Console.WriteLine("--------------------------------");
                 Console.WriteLine("Please fill in social security number.");
                 Console.WriteLine("Format: yymmddxxxx.");
                 Console.Write("? ");
             } while (!long.TryParse(Console.ReadLine(), out socialNumber));
 
-            return new Model.Member(name, 10, socialNumber);
+            return new Model.Member(name, id, socialNumber);
         }
 
         public void ViewMembers(string members)
@@ -76,9 +79,6 @@ namespace View
             Console.WriteLine(members);
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
-
-           
-
 
         }
 
