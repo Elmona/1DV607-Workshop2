@@ -6,7 +6,8 @@ namespace View
     {
         public enum Event
         {
-            View,
+            ViewCompactList,
+            ViewDetailedList,
             AddMember,
             None,
             Quit
@@ -17,11 +18,13 @@ namespace View
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("");
             Console.WriteLine("######################################");
-            Console.WriteLine("#      Welcome to the Boat club.      #");
+            Console.WriteLine("#      Welcome to the Boat club.     #");
             Console.WriteLine("######################################");
+            Console.WriteLine("");
             Console.WriteLine("What do you want to do?");
-            Console.WriteLine("1. View members");
-            Console.WriteLine("2. Add member");
+            Console.WriteLine("1. View Compact list of members");
+            Console.WriteLine("2. View Detailed list of members");
+            Console.WriteLine("3. Add member");
             Console.WriteLine("x. Quit");
             Console.Write("? ");
             
@@ -31,8 +34,9 @@ namespace View
         {
             char inputtedCharacter = Console.ReadKey().KeyChar;
 
-            if (inputtedCharacter == '1') return Event.View;
-            if (inputtedCharacter == '2') return Event.AddMember;
+            if (inputtedCharacter == '1') return Event.ViewCompactList;
+            if (inputtedCharacter == '2') return Event.ViewDetailedList;
+            if (inputtedCharacter == '3') return Event.AddMember;
             if (inputtedCharacter == 'x') return Event.Quit;
             
             return Event.None;
@@ -43,30 +47,39 @@ namespace View
             string name;
             int socialNumber;
 
-            Console.WriteLine("");
-            Console.WriteLine("Adding new member.");
-            Console.WriteLine("Fill in name.");
+            Console.WriteLine("\n");
+            Console.WriteLine("You chose to add a member.");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("Please fill in name.");
             Console.Write("? ");
 
             name = Console.ReadLine();
 
             do
             {
-                Console.WriteLine("Fill in social security number 10 digits.");
+                Console.WriteLine("Please fill in social security number.");
+                Console.WriteLine("Format: yy-mm-dd-xxxx.");
                 Console.Write("? ");
             } while (!int.TryParse(Console.ReadLine(), out socialNumber));
 
-            return new Model.Member(name, "blaha", socialNumber);
+            return new Model.Member(name, 10, socialNumber);
         }
 
         public void ViewMembers(string members)
         {
             Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("You chose to view all current members");
+            Console.WriteLine("--------------------------------");
             Console.WriteLine("Showing all members");
             Console.WriteLine("--------------------------------");
             Console.WriteLine(members);
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
+
+           
+
+
         }
 
         public void ErrorInput()

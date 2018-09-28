@@ -11,7 +11,12 @@ namespace Controller
 
             e = v.GetInputEvent();
 
-            if (e == View.UserView.Event.View)
+            if (e == View.UserView.Event.ViewCompactList)
+            {
+                v.ViewMembers(m.ToString());
+            }
+
+             if (e == View.UserView.Event.ViewDetailedList)
             {
                 v.ViewMembers(m.ToString());
             }
