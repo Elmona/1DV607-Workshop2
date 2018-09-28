@@ -2,41 +2,63 @@ using System;
 
 namespace Model
 {
-    class Boat
+  class Boat
+  {
+    private int _id;
+    private int _length;
+    private BoatType _type;
+
+    public Boat(int id, BoatType type, int length)
     {
-        private int _id;
-        private BoatType _type;
+      Id = id;
+      Length = length;
+      _type = type;
+    }
 
-        public Boat(int id, BoatType type)
+    public BoatType Type { get; set; }
+    public int Id
+    {
+      get
+      {
+        return _id;
+      }
+      set
+      {
+        if (value > 0)
         {
-            Id = id;
-            _type = type;
+          _id = value;
         }
-
-        public BoatType Type { get => _type; }
-        public int Id 
-        { 
-          get 
-          {
-            return _id;
-          }
-          private set
-          {
-            if (value > 0)
-            {
-              _id = value;
-            }
-            else
-            {
-              throw new ArgumentOutOfRangeException("id of a boat must be a positive number! (Or not zero)");
-            }
-          }
+        else
+        {
+          throw new ArgumentOutOfRangeException("Id of a boat must be a positive number! (Greater than zero)");
         }
+      }
+    }
+
+    public int Length
+    {
+      get { return _length; }
+      set
+      {
+        if (value > 0)
+        {
+          _length = value;
+        }
+        else
+        {
+          throw new ArgumentOutOfRangeException("Length of a boat must be a positive number! (Greater than zero)");
+        }
+      }
+    }
+    // DEPRECATED, probably not needed, since we can access the variables from outside
+    public override string ToString()
+    {
+      return $"{this.Id.ToString()} | Boat of type {this.Type} | Length of boat: {this.Length}";
+    }
 
 
-
-
-    // public override string ToString() =>
-    //     $"First name: {this.firstName}, Last name: {this.lastName}, Age: {this.age}";
   }
+
+
+
 }

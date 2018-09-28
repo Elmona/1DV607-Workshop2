@@ -4,28 +4,70 @@ namespace Model
 {
     class MemberList
     {
-        private List<Member> members;
-        private Model.Filesystem filesystem;
+        private List<Member> _members;
 
-        public MemberList(Model.Filesystem f)
+        public MemberList(List<Member> members)
         {
-            filesystem = f;
-            members = f.GetData();
+            _members = members;
         }
 
-        public void AddMember(Member member)
+        public void addMember(Member member)
         {
-            members.Add(member);
-            filesystem.SaveData(members);
+            _members.Add(member);
         }
 
-        public List<Member> getData()
-            => members;
+        public List<Member> getMemberList() => _members;
+
+        public Member getMemberById(int id)
+        {
+            foreach (var member in _members)
+            {
+                if (member.MemberId == id)
+                {
+                    return member;
+                }
+            }
+            return null;
+        }
+
+        public bool removeMember(int id)
+        {
+            bool memberFound = false;
+            for ( int i = 0; i < _members.Count; i++ )
+            {
+                if (_members[i].MemberId == id)
+                {
+                    memberFound = true;
+                    _members.RemoveAt(i);
+                }
+            }
+            return memberFound;
+        }
+
+        public string toStringCompact() 
+        {
+            string returnString = "";
+            foreach (var member in _members)
+            {
+                returnString += member.toStringCompact();
+            }
+            return returnString;
+        }
+
+        public string toStringVerbose() 
+        {
+            string returnString = "";
+            foreach (var member in _members)
+            {
+                returnString += member.toStringVerbose();
+            }
+            return returnString;
+        }
 
         public override string ToString()
         {
             string result = "\n";
-            members.ForEach(x => result += x.ToString() + "\n");
+            _members.ForEach(x => result += x.ToString() + "\n");
             return result;
         }
     }
