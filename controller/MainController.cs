@@ -1,3 +1,4 @@
+
 namespace Controller
 {
     class MainController
@@ -27,8 +28,7 @@ namespace Controller
 
             if (e == View.UserView.Event.None) 
             {
-                v.ErrorInput();
-                
+                v.ErrorInput();  
             }
 
             return true;

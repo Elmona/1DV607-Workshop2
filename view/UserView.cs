@@ -24,6 +24,7 @@ namespace View
             Console.WriteLine("2. Add member");
             Console.WriteLine("x. Quit");
             Console.Write("? ");
+            
         }
 
         public Event GetInputEvent()
@@ -74,6 +75,7 @@ namespace View
             Console.WriteLine("");
             Console.WriteLine("Error in input");
             Console.WriteLine("Please press a character corresponding to one of the choices above.");
+            
         }
     }
 }
