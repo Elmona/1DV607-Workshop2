@@ -58,7 +58,10 @@ namespace View
         {
             Console.WriteLine("");
             Console.WriteLine("Showing all members");
+            Console.WriteLine("--------------------------------");
             Console.WriteLine(members);
+            Console.WriteLine("Press any key to continue.");
+            Console.ReadKey();
         }
     }
 }
