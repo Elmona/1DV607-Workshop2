@@ -41,7 +41,6 @@ namespace Controller
                     response = v.RemoveMember();
                 }
                 _fs.SaveData(m.getMemberList());
-                System.Console.WriteLine("User removed successfully!");
             }
 
             if (e == View.UserView.Event.AddBoat)
@@ -49,6 +48,7 @@ namespace Controller
                 // First, get the member object to add the boat to.
                 int userIdToAddBoat = v.GetUserId();
                 m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
+                _fs.SaveData(m.getMemberList());
             }
 
             if (e == View.UserView.Event.Quit) 
