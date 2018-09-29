@@ -129,6 +129,7 @@ namespace View
             int userId;
             do
             {
+                Console.WriteLine("\n");
                 Console.WriteLine("Please fill in the id of the user you want to add the boat to.");
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out userId));
@@ -137,12 +138,12 @@ namespace View
 
         public void ViewMembers(string members)
         {
-            Console.WriteLine("");
-            Console.WriteLine("");
+            Console.WriteLine("\n");
             Console.WriteLine("You chose to view all current members");
             Console.WriteLine("--------------------------------");
-            Console.WriteLine("Showing all members");
-            Console.WriteLine("--------------------------------");
+            Console.WriteLine("");
+            Console.WriteLine("Showing all members:");
+            Console.WriteLine("");
             Console.WriteLine(members);
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
