@@ -53,6 +53,7 @@ namespace View
             string name;
             long socialNumber;
             
+            
 
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a member.");

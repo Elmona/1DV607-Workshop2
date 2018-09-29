@@ -18,6 +18,8 @@ namespace Model
             _boats = new List<Boat>{};
         }
 
+        
+
         public string Name 
         {
             get { return _name; }
