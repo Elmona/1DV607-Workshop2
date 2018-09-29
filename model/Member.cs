@@ -34,6 +34,15 @@ namespace Model
             } 
         }
 
+        public List<Model.Boat> Boats 
+        {
+            get { return _boats; }
+            private set
+            {
+                _boats = value;
+            } 
+        }
+
         public int MemberId
         {
             get { return _memberId; }
