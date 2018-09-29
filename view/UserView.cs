@@ -54,7 +54,7 @@ namespace View
             long socialNumber;
             
             
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a member.");
             Console.WriteLine("--------------------------------");
@@ -78,6 +78,8 @@ namespace View
         public int RemoveMember()
         {
             int memberToBeRemoved;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n");
             Console.WriteLine("You chose to remove a member.");
             Console.WriteLine("--------------------------------");
@@ -96,6 +98,8 @@ namespace View
             int boatLength;
             string answer;
             int correctChoice;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a boat.");
             Console.WriteLine("--------------------------------");
@@ -139,6 +143,7 @@ namespace View
 
         public void ViewMembers(string members)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n");
             Console.WriteLine("You chose to view all current members");
             Console.WriteLine("--------------------------------");
@@ -151,12 +156,12 @@ namespace View
 
         }
 
-        public void ErrorInput()
+        public void ErrorInput(string Error)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("");
             Console.WriteLine("Error in input");
-            Console.WriteLine("Please press a character corresponding to one of the choices above.");
+            Console.WriteLine(Error);
             
         }
     }
