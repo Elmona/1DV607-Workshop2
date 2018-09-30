@@ -99,7 +99,7 @@ namespace View
         {
             bool successfullyRemoved = false;
             int boatIdToBeDeleted;
-            // get boat id to remove, save int
+
             Console.WriteLine("\n");
             Console.WriteLine("You chose to remove a boat.");
             Console.WriteLine("--------------------------------");
@@ -171,11 +171,6 @@ namespace View
 
             return new Model.Boat(boatId, returnType, boatLength);
         }
-
-        // public bool RemoveBoat(Model.Member member, int id)
-        // {
-        //     return member.removeBoat(id);
-        // }
 
         public int GetUserId()
         {

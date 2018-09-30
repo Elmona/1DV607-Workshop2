@@ -50,7 +50,7 @@ namespace Model
         }
       }
     }
-    // DEPRECATED, probably not needed, since we can access the variables from outside
+
     public override string ToString()
     {
       return $"{this.Id.ToString()} | Boat of type {this.Type} | Length of boat: {this.Length}";

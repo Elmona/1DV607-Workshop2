@@ -77,11 +77,5 @@ namespace Model
             return returnString;
         }
 
-        public override string ToString()
-        {
-            string result = "\n";
-            _members.ForEach(x => result += x.ToString() + "\n");
-            return result;
-        }
     }
 }
