@@ -38,7 +38,7 @@ namespace Controller
                   int response = v.RemoveMember();
                   while(!m.removeMember(response))
                   {
-                    v.ErrorInput("That user does not exist");
+                    v.ErrorInput(1);
                     response = v.RemoveMember();
                   }
                   _fs.SaveData(m.getMemberList());
@@ -61,7 +61,7 @@ namespace Controller
                 
 
                 case View.UserView.Event.None:
-                  v.ErrorInput("Please press a character corresponding to one of the choices above.");  
+                  v.ErrorInput(1);  
                   break;
 
                 default:

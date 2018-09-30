@@ -111,15 +111,15 @@ namespace Model
 
         public string toStringCompact()
         {
-            return $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}\n";
+            return $"Member name: {this.Name}, Id: {this.MemberId}, Social security number: {this.SocialId}, Number of boats: {this._boats.Count} \n";
         }
 
         public string toStringVerbose()
         {
-            string returnString = $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}\n";
+            string returnString = $"Member name: {this.Name}, Member Id: {this.MemberId}, Social Id: {this.SocialId}, Number of boats: {this._boats.Count}\n";
             for (int i = 0; i < _boats.Count; i++)
             {
-                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} | Type - {_boats[i].Type} \n";
+                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} | Type - {_boats[i].Type} \n\n";
             }
             return returnString;
         }

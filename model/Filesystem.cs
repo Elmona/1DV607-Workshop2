@@ -31,7 +31,6 @@ namespace Model
 
         public void SaveData(List<Member> members)
         {
-            Console.WriteLine("Saving data");
             var data = JsonConvert.SerializeObject(members);
             File.WriteAllText(fileName, data);
         }
