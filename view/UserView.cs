@@ -182,51 +182,35 @@ namespace View
         {
             int boatId;
             int boatLength;
-            string chosenBoatType;
+            string answer;
             int correctChoice;
 
-            
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a boat.");
             Console.WriteLine("--------------------------------");
-            Console.WriteLine("");
             do
             {
-                Console.WriteLine("Please enter the id of the boat you want to add.");
+                Console.WriteLine("Please fill in the id of the boat you want to add.");
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out boatId));
             do
             {
-                Console.WriteLine("--------------------------------");
-                Console.WriteLine("");
-                Console.WriteLine("Please enter the length of the boat you want to add (in metres).");
+                Console.WriteLine("Please fill in the length of the boat you want to add.");
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out boatLength));
             do
             {
-                Console.WriteLine("--------------------------------");
-                Console.WriteLine("");
-                Console.WriteLine("Please select the type of the boat you want to add.");
+                Console.WriteLine("Please select what type of the boat you want to add.");
                 Console.WriteLine("1. Sailboat");
                 Console.WriteLine("2. MotorSailer");
                 Console.WriteLine("3. Kayak/Canoe");
                 Console.WriteLine("4. Other");
                 Console.Write(": ");
-                chosenBoatType = Console.ReadLine();;
-            } while (!int.TryParse(chosenBoatType, out correctChoice) && (correctChoice > 0 && correctChoice < 5));
+                answer = Console.ReadLine();;
+            } while (!int.TryParse(answer, out correctChoice) && (correctChoice > 0 && correctChoice < 5));
 
-            Model.BoatType returnType = (Model.BoatType) Enum.Parse(typeof(Model.BoatType), chosenBoatType);
-
-            Console.WriteLine("");
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine("");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Boat was successfully added to member!");
-            Console.WriteLine("");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Press any key to return to main menu.");
-            Console.ReadKey();
-
+            Model.BoatType returnType = (Model.BoatType) Enum.Parse(typeof(Model.BoatType), answer);
 
             return new Model.Boat(boatId, returnType, boatLength);
         }
@@ -277,6 +261,32 @@ namespace View
                  Console.WriteLine("Press any key to return to main menu.");
                  Console.ReadKey();
                  break;
+
+                 case 2:
+                 Console.WriteLine("");
+                 Console.WriteLine("--------------------------------");
+                 Console.WriteLine("");
+                 Console.ForegroundColor = ConsoleColor.Red;
+                 Console.WriteLine("Please press one of the characters that corresponds to your desired action");
+                 Console.WriteLine("");
+                 Console.ForegroundColor = ConsoleColor.Yellow;
+                 Console.WriteLine("Press any key to continue.");
+                 Console.ReadKey();
+                 break;
+
+                 case 3:
+                 Console.WriteLine("");
+                 Console.WriteLine("--------------------------------");
+                 Console.WriteLine("");
+                 Console.ForegroundColor = ConsoleColor.Red;
+                 Console.WriteLine("A member with that ID does not exist!");
+                 Console.WriteLine("");
+                 Console.ForegroundColor = ConsoleColor.Yellow;
+                 Console.WriteLine("Press any key to continue.");
+                 Console.ReadKey();
+
+                 break;
+
 
                 default:
               Console.WriteLine("Default case");

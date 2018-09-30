@@ -61,7 +61,7 @@ namespace Controller
                 
 
                 case View.UserView.Event.None:
-                  v.ErrorInput(1);  
+                  v.ErrorInput(2);  
                   break;
 
                 default:
