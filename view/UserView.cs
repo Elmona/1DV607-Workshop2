@@ -11,6 +11,7 @@ namespace View
             AddMember,
             RemoveMember,
             AddBoat,
+            RemoveBoat,
             None,
             Quit
         }
@@ -29,6 +30,7 @@ namespace View
             Console.WriteLine("3. Add member");
             Console.WriteLine("4. Remove member");
             Console.WriteLine("5. Add boat");
+            Console.WriteLine("6. Remove boat");
             Console.WriteLine("x. Quit");
             Console.Write("? ");
             
@@ -43,6 +45,7 @@ namespace View
             if (inputtedCharacter == '3') return Event.AddMember;
             if (inputtedCharacter == '4') return Event.RemoveMember;
             if (inputtedCharacter == '5') return Event.AddBoat;
+            if (inputtedCharacter == '6') return Event.RemoveBoat;
             if (inputtedCharacter == 'x') return Event.Quit;
             
             return Event.None;
@@ -92,6 +95,46 @@ namespace View
             return memberToBeRemoved;
         }
 
+        public bool RemoveBoat(Model.Member member)
+        {
+            bool successfullyRemoved = false;
+            int boatIdToBeDeleted;
+            // get boat id to remove, save int
+            Console.WriteLine("\n");
+            Console.WriteLine("You chose to remove a boat.");
+            Console.WriteLine("--------------------------------");
+            if (member.hasBoats())
+            {
+                do
+                {
+                    Console.WriteLine("Please fill in the id of the boat you want to delete.");
+                    Console.WriteLine("Enter '0' to return.");
+                    Console.Write(": ");
+                } while (!int.TryParse(Console.ReadLine(), out boatIdToBeDeleted));
+                
+                successfullyRemoved = member.removeBoat(boatIdToBeDeleted);
+                System.Console.WriteLine($"-- removed: {successfullyRemoved}");
+
+                while (!successfullyRemoved && boatIdToBeDeleted != 0)
+                {
+                    System.Console.WriteLine("No boat with that Id exists, please fill in the id of the boat you want to delete.");
+                    System.Console.WriteLine("Type '0' to return.");
+                    Console.WriteLine("--------------------------------");
+                    System.Console.WriteLine(member.toStringVerbose());
+                    do
+                    {
+                        Console.WriteLine("Please fill in the id of the boat you want to delete.");
+                        Console.WriteLine("Enter '0' to return.");
+                        Console.Write(": ");
+                    } while (!int.TryParse(Console.ReadLine(), out boatIdToBeDeleted));
+                    successfullyRemoved = member.removeBoat(boatIdToBeDeleted);
+                }   
+            } else {
+                System.Console.WriteLine("That user has no boats to be removed!");
+            } 
+            return successfullyRemoved;
+        }
+
         public Model.Boat AddBoat()
         {
             int boatId;
@@ -129,13 +172,18 @@ namespace View
             return new Model.Boat(boatId, returnType, boatLength);
         }
 
+        // public bool RemoveBoat(Model.Member member, int id)
+        // {
+        //     return member.removeBoat(id);
+        // }
+
         public int GetUserId()
         {
             int userId;
             do
             {
                 Console.WriteLine("\n");
-                Console.WriteLine("Please fill in the id of the user you want to add the boat to.");
+                Console.WriteLine("Please fill in the id of the user you want to add or remove the boat to.");
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out userId));
             return userId;

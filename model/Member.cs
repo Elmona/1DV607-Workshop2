@@ -60,6 +60,24 @@ namespace Model
             }
         }
 
+        public bool hasBoats()
+        {
+            return _boats.Count > 0;
+        }
+
+        // public bool hasBoat(int id)
+        // {
+        //     bool boatFound = false;
+        //     foreach (var boat in _boats)
+        //     {
+        //         if (boat.Id == id)
+        //         {
+        //             boatFound = true;
+        //         }
+        //     }
+        //     return boatFound;
+        // }
+
         public long SocialId
         {
             get { return _socialId; }
