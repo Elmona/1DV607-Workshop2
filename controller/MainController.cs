@@ -46,15 +46,26 @@ namespace Controller
 
                 case View.UserView.Event.AddBoat:
                   int userIdToAddBoat = v.GetUserId();
-                  m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
+                  if (m.getMemberById(userIdToAddBoat) == null) {
+                    v.ErrorInput(1);
+                  } else {
+                    m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
                   _fs.SaveData(m.getMemberList());
+                  }
+                  
                   break;
 
                 case View.UserView.Event.RemoveBoat:
                   int userIdToRemoveBoat = v.GetUserId();
                   Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
-                  v.RemoveBoat(memberToRemoveBoat);
+                  if (memberToRemoveBoat == null) {
+                    v.ErrorInput(1);
+                  }
+                  else if(v.RemoveBoat(memberToRemoveBoat) == false){
+                    v.ErrorInput(3);
+                  } else {
                   _fs.SaveData(m.getMemberList());
+                  }
                   break;
                 case View.UserView.Event.Quit:
                   return false;
