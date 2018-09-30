@@ -53,7 +53,8 @@ namespace View
             string name;
             long socialNumber;
             
-
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a member.");
             Console.WriteLine("--------------------------------");
@@ -77,6 +78,8 @@ namespace View
         public int RemoveMember()
         {
             int memberToBeRemoved;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n");
             Console.WriteLine("You chose to remove a member.");
             Console.WriteLine("--------------------------------");
@@ -95,6 +98,8 @@ namespace View
             int boatLength;
             string answer;
             int correctChoice;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a boat.");
             Console.WriteLine("--------------------------------");
@@ -129,6 +134,7 @@ namespace View
             int userId;
             do
             {
+                Console.WriteLine("\n");
                 Console.WriteLine("Please fill in the id of the user you want to add the boat to.");
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out userId));
@@ -137,24 +143,25 @@ namespace View
 
         public void ViewMembers(string members)
         {
-            Console.WriteLine("");
-            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n");
             Console.WriteLine("You chose to view all current members");
             Console.WriteLine("--------------------------------");
-            Console.WriteLine("Showing all members");
-            Console.WriteLine("--------------------------------");
+            Console.WriteLine("");
+            Console.WriteLine("Showing all members:");
+            Console.WriteLine("");
             Console.WriteLine(members);
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
 
         }
 
-        public void ErrorInput()
+        public void ErrorInput(string Error)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("");
             Console.WriteLine("Error in input");
-            Console.WriteLine("Please press a character corresponding to one of the choices above.");
+            Console.WriteLine(Error);
             
         }
     }

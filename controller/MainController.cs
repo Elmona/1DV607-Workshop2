@@ -1,4 +1,6 @@
 
+using System;
+
 namespace Controller
 {
     class MainController
@@ -17,50 +19,49 @@ namespace Controller
 
             e = v.GetInputEvent();
 
-            if (e == View.UserView.Event.ViewCompactList)
+            switch (e)
             {
-                v.ViewMembers(m.toStringCompact());
-            }
+                case View.UserView.Event.ViewCompactList:
+                  v.ViewMembers(m.toStringCompact());
+                  break;
 
-             if (e == View.UserView.Event.ViewDetailedList)
-            {
-                v.ViewMembers(m.toStringVerbose());
-            }
+                case View.UserView.Event.ViewDetailedList:
+                  v.ViewMembers(m.toStringVerbose());
+                  break;
 
-            if (e == View.UserView.Event.AddMember)
-            {
-                m.addMember(v.AddMember(m.getNextId()));
-                _fs.SaveData(m.getMemberList());
-            }
+                case View.UserView.Event.AddMember:
+                   m.addMember(v.AddMember(m.getNextId()));
+                  _fs.SaveData(m.getMemberList());
+                  break;
 
-            if (e == View.UserView.Event.RemoveMember)
-            {
-                int response = v.RemoveMember();
-                while(!m.removeMember(response))
-                {
+                case View.UserView.Event.RemoveMember:
+                  int response = v.RemoveMember();
+                  while(!m.removeMember(response))
+                  {
+                    v.ErrorInput("That user does not exist");
                     response = v.RemoveMember();
-                }
-                _fs.SaveData(m.getMemberList());
-            }
+                  }
+                  _fs.SaveData(m.getMemberList());
+                  break;
 
-            if (e == View.UserView.Event.AddBoat)
-            {
-                // First, get the member object to add the boat to.
-                int userIdToAddBoat = v.GetUserId();
-                m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
-                _fs.SaveData(m.getMemberList());
-            }
+                case View.UserView.Event.AddBoat:
+                  int userIdToAddBoat = v.GetUserId();
+                  m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
+                  _fs.SaveData(m.getMemberList());
+                  break;
 
-            if (e == View.UserView.Event.Quit) 
-            {
-                return false;
-            }
+                case View.UserView.Event.Quit:
+                  return false;
+                
 
-            if (e == View.UserView.Event.None) 
-            {
-                v.ErrorInput();  
-            }
+                case View.UserView.Event.None:
+                  v.ErrorInput("Please press a character corresponding to one of the choices above.");  
+                  break;
 
+                default:
+                  return true;
+                
+            }
             return true;
         }
     }
