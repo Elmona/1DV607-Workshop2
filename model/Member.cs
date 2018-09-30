@@ -18,8 +18,6 @@ namespace Model
             _boats = new List<Boat>{};
         }
 
-        
-
         public string Name 
         {
             get { return _name; }
@@ -60,6 +58,11 @@ namespace Model
             }
         }
 
+        public bool hasBoats()
+        {
+            return _boats.Count > 0;
+        }
+
         public long SocialId
         {
             get { return _socialId; }
@@ -93,26 +96,18 @@ namespace Model
             }
             return boatFound;
         }
-
+        // Not used?
         public Model.Boat GetBoat(int id)
         {
             for ( int i = 0; i < _boats.Count; i++ )
             {
                 if (_boats[i].Id == id)
                 {
-                    // returnBoat = _boats[i];
                     return _boats[i];
                 }
             }
             return null;
         }
-
-
-
-        // DEPRECATED
-        // TODO: use toStringCompact() and toStringVerbose() instead
-        public override string ToString() =>
-            $"Name is: {this.Name}, MemberId: {this.MemberId}, SocialId: {this.SocialId}, Number of boats: {this._boats.Count}";
 
         public string toStringCompact()
         {

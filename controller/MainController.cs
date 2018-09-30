@@ -50,6 +50,12 @@ namespace Controller
                   _fs.SaveData(m.getMemberList());
                   break;
 
+                case View.UserView.Event.RemoveBoat:
+                  int userIdToRemoveBoat = v.GetUserId();
+                  Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
+                  v.RemoveBoat(memberToRemoveBoat);
+                  _fs.SaveData(m.getMemberList());
+                  break;
                 case View.UserView.Event.Quit:
                   return false;
                 
