@@ -53,9 +53,16 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.ViewSpecificMember:
-                    int userIdToView = v.getUserId("Enter user ID to view");
+                    v.viewMembers(m.toStringCompact());
+                    int userIdToView = v.getUserId("Enter member ID to view that specific member");
                     Model.Member memberToView = m.getMemberById(userIdToView);
-                    v.viewMember(memberToView.toStringVerbose());
+                    if (memberToView == null) {
+                        v.errorInput(View.UserView.Errors.MemberDontExist);
+                    } else {
+                      v.viewSpecificMember(memberToView.toStringVerbose());
+                      v.pause();
+                    }
+                    
                     break;
 
                 case View.UserView.Event.RemoveMember:

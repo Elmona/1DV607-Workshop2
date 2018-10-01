@@ -260,11 +260,13 @@ namespace View
             return userId;
         }
 
-        public void viewMember(string member)
+        public void viewSpecificMember(string member)
         {
             Console.WriteLine("\n");
-            Console.ResetColor();
+            Console.WriteLine("Showing specific member:");
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(member);
+            Console.ResetColor();
         }
 
         public void pause() => Console.ReadKey();
