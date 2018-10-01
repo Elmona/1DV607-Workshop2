@@ -8,7 +8,7 @@ namespace Controller
         Model.Filesystem _fs;
         public MainController()
         {
-            _fs = new Model.Filesystem(){};
+            _fs = new Model.Filesystem() { };
         }
 
         public bool Start(View.UserView v, Model.MemberList m)
@@ -22,36 +22,43 @@ namespace Controller
             switch (e)
             {
                 case View.UserView.Event.ViewCompactList:
-                  v.ViewMembers(m.toStringCompact());
-                  break;
+                    v.ViewMembers(m.toStringCompact());
+                    v.Pause();
+                    break;
 
                 case View.UserView.Event.ViewDetailedList:
-                  v.ViewMembers(m.toStringVerbose());
-                  break;
+                    v.ViewMembers(m.toStringVerbose());
+                    v.Pause();
+                    break;
 
                 case View.UserView.Event.AddMember:
-                   m.addMember(v.AddMember(m.getNextId()));
-                  _fs.SaveData(m.getMemberList());
-                  break;
+                    m.addMember(v.AddMember(m.getNextId()));
+                    _fs.SaveData(m.getMemberList());
+                    break;
 
                 case View.UserView.Event.EditMember:
-                  v.ViewMembers(m.toStringCompact());
-                  int userIdToEdit          = v.GetUserId("Enter user ID to edit");
-                  Model.Member memberToEdit = m.getMemberById(userIdToEdit);
-                  if (memberToEdit == null)
-                  {
-                    v.ErrorInput(1);
-                  } else {
-                    Model.Member updatedMember = v.EditMember(memberToEdit.MemberId);
-                    memberToEdit.updateMember(updatedMember);
-                    _fs.SaveData(m.getMemberList());
-                  }
-                  break;
+                    v.ViewMembers(m.toStringCompact());
+                    int userIdToEdit = v.GetUserId("Enter user ID to edit");
+                    Model.Member memberToEdit = m.getMemberById(userIdToEdit);
+                    if (memberToEdit == null)
+                    {
+                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
+                    }
+                    else
+                    {
+                        Model.Member updatedMember = v.EditMember(memberToEdit.MemberId);
+                        memberToEdit.updateMember(updatedMember);
+                        _fs.SaveData(m.getMemberList());
+                    }
+                    break;
+
                 case View.UserView.Event.ViewSpecificMember:
-                  int userIdToView = v.GetUserId("Enter user ID to view");
-                  Model.Member memberToView = m.getMemberById(userIdToView);
-                  v.ViewMember(memberToView.toStringVerbose());
-                  break;
+                    int userIdToView = v.GetUserId("Enter user ID to view");
+                    Model.Member memberToView = m.getMemberById(userIdToView);
+                    v.ViewMember(memberToView.toStringVerbose());
+                    break;
+
+                case View.UserView.Event.RemoveMember:
                     int response = v.RemoveMember();
                     while (!m.removeMember(response))
                     {
@@ -62,7 +69,8 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.AddBoat:
-                    int userIdToAddBoat = v.GetUserId("Please enter the id of the user for which you want to add or remove a boat.");
+                    v.ViewMembers(m.toStringCompact());
+                    int userIdToAddBoat = v.GetUserId("Please enter the id of the user for which you want to add a boat.");
                     if (m.getMemberById(userIdToAddBoat) == null)
                     {
                         v.ErrorInput(View.UserView.Errors.MemberDontExist);
@@ -76,7 +84,8 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.RemoveBoat:
-                    int userIdToRemoveBoat = v.GetUserId("Please enter the id of the user for which you want to add or remove a boat.");
+                    v.ViewMembers(m.toStringCompact());
+                    int userIdToRemoveBoat = v.GetUserId("Please enter the id of the user for which you want to remove a boat.");
                     Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
                     if (memberToRemoveBoat == null)
                     {
@@ -93,35 +102,44 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.ChangeBoatData:
+                    v.ViewMembers(m.toStringCompact());
                     int userId = v.GetUserId("Please enter the id of the user to change boat information on.");
                     var member = m.getMemberById(userId);
-                    var oldBoat = v.SelectBoat(member);
 
-                    if (oldBoat == null)
+
+                    if (member == null)
                     {
-                        v.ErrorInput(View.UserView.Errors.UserHasNoBoats);
+                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
                     }
                     else
                     {
-                        member.removeBoat(oldBoat.Id);
-                        m.getMemberById(userId).addBoat(v.AddBoat());
+                        var oldBoat = v.SelectBoat(member);
+                        if (oldBoat == null)
+                        {
+                            v.ErrorInput(View.UserView.Errors.UserHasNoBoats);
+                        }
+                        else
+                        {
+                            member.removeBoat(oldBoat.Id);
+                            m.getMemberById(userId).addBoat(v.AddBoat());
+                            _fs.SaveData(m.getMemberList());
+                        }
 
-                        _fs.SaveData(m.getMemberList());
                     }
 
                     break;
 
                 case View.UserView.Event.Quit:
-                  return false;
-                
+                    return false;
+
 
                 case View.UserView.Event.None:
                     v.ErrorInput(View.UserView.Errors.InvalidAction);
                     break;
 
                 default:
-                  return true;
-                
+                    return true;
+
             }
             return true;
         }

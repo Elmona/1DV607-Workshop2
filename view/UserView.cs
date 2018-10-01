@@ -75,8 +75,6 @@ namespace View
 
 
             Console.WriteLine("\n");
-            Console.WriteLine("\nYou chose to add a member.");
-            Console.WriteLine("--------------------------------");
             Console.WriteLine("\nPlease enter a name.");
             Console.Write("? ");
 
@@ -84,7 +82,6 @@ namespace View
 
             do
             {
-                Console.WriteLine("\n--------------------------------");
                 Console.WriteLine("\nPlease enter members social security number.");
                 Console.WriteLine("Format: yymmddxxxx.\n");
                 Console.Write(": ");
@@ -94,7 +91,7 @@ namespace View
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Member was successfully added!");
             Console.WriteLine("");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
 
@@ -106,9 +103,6 @@ namespace View
             long newSocialId    = 1;
 
             Console.WriteLine("\n");
-            Console.WriteLine("Changing member name.");
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine("");
             Console.WriteLine("Enter a name to change it, or leave it blank to not change it.");
             Console.Write(": ");
             string newName = Console.ReadLine();
@@ -119,7 +113,6 @@ namespace View
             do
             {
                 Console.WriteLine("\n");
-                Console.WriteLine("--------------------------------");
                 Console.WriteLine("Please enter members social security number.");
                 Console.WriteLine("Format: yymmddxxxx.");
                 Console.WriteLine("Enter '1' to not change it.");
@@ -133,7 +126,6 @@ namespace View
         {
             int memberToBeRemoved;
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nYou chose to remove a member.");
             Console.WriteLine("--------------------------------");
             do
@@ -151,7 +143,7 @@ namespace View
             int boatIdToBeDeleted;
             bool memberHasBoats = false;
 
-            Console.WriteLine("\n\nYou chose to remove a boat.");
+            Console.WriteLine("\nYou chose to remove a boat.");
             Console.WriteLine("--------------------------------\n");
             if (!member.hasBoats())
             {
@@ -197,7 +189,7 @@ namespace View
             Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("\nBoat was successfully removed from member!");
             Console.WriteLine("--------------------------------");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            // Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nPress any key to return to main menu.");
             Console.ReadKey();
 
@@ -237,7 +229,7 @@ namespace View
             Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("\nBoat was successfully added to member!");
             Console.WriteLine("--------------------------------");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            // Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nPress any key to return to main menu.");
             Console.ReadKey();
 
@@ -263,7 +255,6 @@ namespace View
             int userId;
             do
             {
-                Console.WriteLine("\n--------------------------------\n");
                 Console.WriteLine(msg);
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out userId));
@@ -275,18 +266,15 @@ namespace View
             Console.WriteLine("\n");
             Console.ResetColor();
             Console.WriteLine(member);
-            Console.WriteLine("\nPress any key to return.");
-            Console.ReadKey();
         }
+
+        public void Pause() => Console.ReadKey();
+
         public void ViewMembers(string members)
         {
-            Console.WriteLine("\nYou chose to view all current members.\n");
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine("Showing all members:\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\nShowing all members:\n");
+            // Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(members);
-            Console.WriteLine("Press any key to return.");
-            Console.ReadKey();
         }
 
 public void ErrorInput(Enum Errors)
@@ -317,7 +305,7 @@ public void ErrorInput(Enum Errors)
                     break;
             }
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            // Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nPress any key to return to main menu.");
             Console.ReadKey();
         }
