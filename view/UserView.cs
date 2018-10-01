@@ -18,6 +18,14 @@ namespace View
             Quit
         }
 
+        public enum Errors
+        {
+            MemberDontExist,
+            InvalidAction,
+            InvalidBoat,
+            UserHasNoBoats
+        }
+
         public void DisplayInstructions()
         {
             Console.ResetColor();
@@ -268,50 +276,40 @@ namespace View
         }
 
 
-        public void ErrorInput(int Error)
+        public void ErrorInput(Enum Errors)
         {
-            int caseSwitch = Error;
-            switch (caseSwitch)
+            Console.WriteLine("");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            switch (Errors)
             {
-                case 1:
-                    Console.WriteLine("");
-                    Console.WriteLine("--------------------------------");
-                    Console.WriteLine("");
-                    Console.ForegroundColor = ConsoleColor.Red;
+                case View.UserView.Errors.MemberDontExist:
                     Console.WriteLine("A Member with that ID does not exist!");
-                    Console.WriteLine("");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Press any key to return to main menu.");
-                    Console.ReadKey();
                     break;
 
-                case 2:
-                    Console.WriteLine("");
-                    Console.WriteLine("--------------------------------");
-                    Console.WriteLine("");
-                    Console.ForegroundColor = ConsoleColor.Red;
+                case View.UserView.Errors.InvalidBoat:
+                    Console.WriteLine("That user has no boats to be removed!");
+                    break;
+
+                case View.UserView.Errors.UserHasNoBoats:
+                    Console.WriteLine("There is no boat with that id.");
+                    break;
+
+                case View.UserView.Errors.InvalidAction:
                     Console.WriteLine("Please press one of the characters that corresponds to your desired action");
-                    Console.WriteLine("");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Press any key to return to main menu.");
-                    Console.ReadKey();
-                    break;
-
-                case 3:
-                    Console.WriteLine("");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine("That user has no boats to be removed!");
-                    Console.WriteLine("--------------------------------");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any key to return to main menu.");
-                    Console.ReadKey();
                     break;
 
                 default:
                     Console.WriteLine("Default case");
                     break;
             }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("");
+            Console.WriteLine("Press any key to return to main menu.");
+            Console.ReadKey();
         }
     }
 }

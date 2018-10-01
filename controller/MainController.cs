@@ -38,7 +38,7 @@ namespace Controller
                     int response = v.RemoveMember();
                     while (!m.removeMember(response))
                     {
-                        v.ErrorInput(1);
+                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
                         response = v.RemoveMember();
                     }
                     _fs.SaveData(m.getMemberList());
@@ -48,7 +48,7 @@ namespace Controller
                     int userIdToAddBoat = v.GetUserId("Please enter the id of the user for which you want to add or remove a boat.");
                     if (m.getMemberById(userIdToAddBoat) == null)
                     {
-                        v.ErrorInput(1);
+                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
                     }
                     else
                     {
@@ -63,11 +63,11 @@ namespace Controller
                     Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
                     if (memberToRemoveBoat == null)
                     {
-                        v.ErrorInput(1);
+                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
                     }
                     else if (v.RemoveBoat(memberToRemoveBoat) == false)
                     {
-                        v.ErrorInput(3);
+                        v.ErrorInput(View.UserView.Errors.UserHasNoBoats);
                     }
                     else
                     {
@@ -80,10 +80,18 @@ namespace Controller
                     var member = m.getMemberById(userId);
                     var oldBoat = v.SelectBoat(member);
 
-                    member.removeBoat(oldBoat.Id);
-                    m.getMemberById(userId).addBoat(v.AddBoat());
+                    if (oldBoat == null)
+                    {
+                        v.ErrorInput(View.UserView.Errors.UserHasNoBoats);
+                    }
+                    else
+                    {
+                        member.removeBoat(oldBoat.Id);
+                        m.getMemberById(userId).addBoat(v.AddBoat());
 
-                    _fs.SaveData(m.getMemberList());
+                        _fs.SaveData(m.getMemberList());
+                    }
+
                     break;
 
                 case View.UserView.Event.Quit:
@@ -91,7 +99,7 @@ namespace Controller
 
 
                 case View.UserView.Event.None:
-                    v.ErrorInput(2);
+                    v.ErrorInput(View.UserView.Errors.InvalidAction);
                     break;
 
                 default:
