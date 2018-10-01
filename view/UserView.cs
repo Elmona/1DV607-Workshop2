@@ -176,7 +176,6 @@ namespace View
         {
             int boatId;
             int boatLength;
-            // int answer;
             int correctChoice;
 
             Console.WriteLine("\n");
@@ -207,7 +206,6 @@ namespace View
             } while (!int.TryParse(Console.ReadLine(), out correctChoice) && (correctChoice > 0 && correctChoice < 5));
 
             Model.BoatType returnType = (Model.BoatType)Enum.ToObject(typeof(Model.BoatType), correctChoice);
-            Console.WriteLine("Blaha" + returnType);
 
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Green;
@@ -237,7 +235,6 @@ namespace View
 
         public void ViewMembers(string members)
         {
-
             Console.WriteLine("\n");
             Console.WriteLine("You chose to view all current members.");
             Console.WriteLine("--------------------------------");
@@ -248,7 +245,6 @@ namespace View
             Console.WriteLine(members);
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
-
         }
 
         public void ErrorInput(int Error)
@@ -256,7 +252,6 @@ namespace View
             int caseSwitch = Error;
             switch (caseSwitch)
             {
-
                 case 1:
                     Console.WriteLine("");
                     Console.WriteLine("--------------------------------");
@@ -292,13 +287,10 @@ namespace View
                     Console.ReadKey();
                     break;
 
-
                 default:
                     Console.WriteLine("Default case");
                     break;
             }
-
-
         }
     }
 }
