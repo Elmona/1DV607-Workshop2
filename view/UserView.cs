@@ -211,7 +211,7 @@ namespace View
             } while (!int.TryParse(Console.ReadLine(), out boatId));
             do
             {
-                Console.WriteLine("\nPlease enter the length of the boat you want to add.");
+                Console.WriteLine("\nPlease enter the length of the boat you want to add (in centimeters)");
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out boatLength));
             do

@@ -128,7 +128,7 @@ namespace Model
             string returnString = $"Member name: {this.Name}, Member Id: {this.MemberId}, Social Id: {this.SocialId}, Number of boats: {this._boats.Count}\n";
             for (int i = 0; i < _boats.Count; i++)
             {
-                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} | Type - {_boats[i].Type} \n";
+                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} cm | Type - {_boats[i].Type} \n";
             }
             return returnString;
         }
