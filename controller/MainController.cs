@@ -8,7 +8,7 @@ namespace Controller
         Model.Filesystem _fs;
         public MainController()
         {
-            _fs = new Model.Filesystem(){};
+            _fs = new Model.Filesystem() { };
         }
 
         public bool Start(View.UserView v, Model.MemberList m)
@@ -22,62 +22,89 @@ namespace Controller
             switch (e)
             {
                 case View.UserView.Event.ViewCompactList:
-                  v.ViewMembers(m.toStringCompact());
-                  break;
+                    v.ViewMembers(m.toStringCompact());
+                    break;
 
                 case View.UserView.Event.ViewDetailedList:
-                  v.ViewMembers(m.toStringVerbose());
-                  break;
+                    v.ViewMembers(m.toStringVerbose());
+                    break;
 
                 case View.UserView.Event.AddMember:
-                   m.addMember(v.AddMember(m.getNextId()));
-                  _fs.SaveData(m.getMemberList());
-                  break;
+                    m.addMember(v.AddMember(m.getNextId()));
+                    _fs.SaveData(m.getMemberList());
+                    break;
 
                 case View.UserView.Event.RemoveMember:
-                  int response = v.RemoveMember();
-                  while(!m.removeMember(response))
-                  {
-                    v.ErrorInput(1);
-                    response = v.RemoveMember();
-                  }
-                  _fs.SaveData(m.getMemberList());
-                  break;
+                    int response = v.RemoveMember();
+                    while (!m.removeMember(response))
+                    {
+                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
+                        response = v.RemoveMember();
+                    }
+                    _fs.SaveData(m.getMemberList());
+                    break;
 
                 case View.UserView.Event.AddBoat:
-                  int userIdToAddBoat = v.GetUserId();
-                  if (m.getMemberById(userIdToAddBoat) == null) {
-                    v.ErrorInput(1);
-                  } else {
-                    m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
-                  _fs.SaveData(m.getMemberList());
-                  }
-                  
-                  break;
+                    int userIdToAddBoat = v.GetUserId("Please enter the id of the user for which you want to add or remove a boat.");
+                    if (m.getMemberById(userIdToAddBoat) == null)
+                    {
+                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
+                    }
+                    else
+                    {
+                        m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
+                        _fs.SaveData(m.getMemberList());
+                    }
+
+                    break;
 
                 case View.UserView.Event.RemoveBoat:
-                  int userIdToRemoveBoat = v.GetUserId();
-                  Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
-                  if (memberToRemoveBoat == null) {
-                    v.ErrorInput(1);
-                  }
-                  else if(v.RemoveBoat(memberToRemoveBoat) == false){
-                    v.ErrorInput(3);
-                  } else {
-                  _fs.SaveData(m.getMemberList());
-                  }
-                  break;
+                    int userIdToRemoveBoat = v.GetUserId("Please enter the id of the user for which you want to add or remove a boat.");
+                    Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
+                    if (memberToRemoveBoat == null)
+                    {
+                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
+                    }
+                    else if (v.RemoveBoat(memberToRemoveBoat) == false)
+                    {
+                        v.ErrorInput(View.UserView.Errors.UserHasNoBoats);
+                    }
+                    else
+                    {
+                        _fs.SaveData(m.getMemberList());
+                    }
+                    break;
+
+                case View.UserView.Event.ChangeBoatData:
+                    int userId = v.GetUserId("Please enter the id of the user to change boat information on.");
+                    var member = m.getMemberById(userId);
+                    var oldBoat = v.SelectBoat(member);
+
+                    if (oldBoat == null)
+                    {
+                        v.ErrorInput(View.UserView.Errors.UserHasNoBoats);
+                    }
+                    else
+                    {
+                        member.removeBoat(oldBoat.Id);
+                        m.getMemberById(userId).addBoat(v.AddBoat());
+
+                        _fs.SaveData(m.getMemberList());
+                    }
+
+                    break;
+
                 case View.UserView.Event.Quit:
-                  return false;
-                
+                    return false;
+
 
                 case View.UserView.Event.None:
-                  v.ErrorInput(2);  
-                  break;
+                    v.ErrorInput(View.UserView.Errors.InvalidAction);
+                    break;
 
                 default:
-                  return true;
-                
+                    return true;
+
             }
             return true;
         }
