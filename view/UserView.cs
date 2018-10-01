@@ -27,7 +27,7 @@ namespace View
             UserHasNoBoats
         }
 
-        public void DisplayInstructions()
+        public void displayInstructions()
         {
             Console.ResetColor();
             Console.WriteLine("");
@@ -50,7 +50,7 @@ namespace View
 
         }
 
-        public Event GetInputEvent()
+        public Event getInputEvent()
         {
             char inputtedCharacter = Console.ReadKey().KeyChar;
 
@@ -68,7 +68,7 @@ namespace View
             return Event.None;
         }
 
-        public Model.Member AddMember(int id)
+        public Model.Member addMember(int id)
         {
             string name;
             long socialNumber;
@@ -98,7 +98,7 @@ namespace View
             return new Model.Member(name, id, socialNumber);
         }
 
-        public Model.Member EditMember(int id)
+        public Model.Member editMember(int id)
         {
             long newSocialId    = 1;
 
@@ -122,7 +122,7 @@ namespace View
             return new Model.Member(newName, id, newSocialId);
         }
 
-        public int RemoveMember()
+        public int removeMember()
         {
             int memberToBeRemoved;
 
@@ -135,9 +135,10 @@ namespace View
             } while (!int.TryParse(Console.ReadLine(), out memberToBeRemoved));
 
             return memberToBeRemoved;
+            
         }
 
-        public bool RemoveBoat(Model.Member member)
+        public bool removeBoat(Model.Member member)
         {
             bool successfullyRemoved = false;
             int boatIdToBeDeleted;
@@ -185,18 +186,17 @@ namespace View
                 }
             }
 
-            // If Removal was successful
+            
             Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("\nBoat was successfully removed from member!");
             Console.WriteLine("--------------------------------");
-            // Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nPress any key to return to main menu.");
             Console.ReadKey();
 
             return successfullyRemoved;
         }
 
-        public Model.Boat AddBoat()
+        public Model.Boat addBoat()
         {
             int boatId;
             int boatLength;
@@ -229,14 +229,13 @@ namespace View
             Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("\nBoat was successfully added to member!");
             Console.WriteLine("--------------------------------");
-            // Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nPress any key to return to main menu.");
             Console.ReadKey();
 
             return new Model.Boat(boatId, returnType, boatLength);
         }
 
-        public Model.Boat SelectBoat(Model.Member member)
+        public Model.Boat selectBoat(Model.Member member)
         {
             int boatId;
 
@@ -250,7 +249,7 @@ namespace View
             return member.GetBoat(boatId);
         }
 
-        public int GetUserId(string msg)
+        public int getUserId(string msg)
         {
             int userId;
             do
@@ -261,23 +260,23 @@ namespace View
             return userId;
         }
 
-        public void ViewMember(string member)
+        public void viewMember(string member)
         {
             Console.WriteLine("\n");
             Console.ResetColor();
             Console.WriteLine(member);
         }
 
-        public void Pause() => Console.ReadKey();
+        public void pause() => Console.ReadKey();
 
-        public void ViewMembers(string members)
+        public void viewMembers(string members)
         {
             Console.WriteLine("\nShowing all members:\n");
             // Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(members);
         }
 
-public void ErrorInput(Enum Errors)
+public void errorInput(Enum Errors)
         {
             Console.WriteLine("\n--------------------------------\n");
             Console.ForegroundColor = ConsoleColor.Red;
@@ -289,11 +288,11 @@ public void ErrorInput(Enum Errors)
                     break;
 
                 case View.UserView.Errors.InvalidBoat:
-                    Console.WriteLine("That user has no boats to be removed!");
+                    Console.WriteLine("There is no boat with that id.");
                     break;
 
                 case View.UserView.Errors.UserHasNoBoats:
-                    Console.WriteLine("There is no boat with that id.");
+                    Console.WriteLine("That user has no boats to be removed!");
                     break;
 
                 case View.UserView.Errors.InvalidAction:
@@ -305,8 +304,8 @@ public void ErrorInput(Enum Errors)
                     break;
             }
 
-            // Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nPress any key to return to main menu.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\nPress any key to return to continue.");
             Console.ReadKey();
         }
     }

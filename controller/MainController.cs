@@ -11,118 +11,119 @@ namespace Controller
             _fs = new Model.Filesystem() { };
         }
 
-        public bool Start(View.UserView v, Model.MemberList m)
+        public bool start(View.UserView v, Model.MemberList m)
         {
-            v.DisplayInstructions();
+            v.displayInstructions();
 
             View.UserView.Event e;
 
-            e = v.GetInputEvent();
+            e = v.getInputEvent();
 
             switch (e)
             {
                 case View.UserView.Event.ViewCompactList:
-                    v.ViewMembers(m.toStringCompact());
-                    v.Pause();
+                    v.viewMembers(m.toStringCompact());
+                    v.pause();
                     break;
 
                 case View.UserView.Event.ViewDetailedList:
-                    v.ViewMembers(m.toStringVerbose());
-                    v.Pause();
+                    v.viewMembers(m.toStringVerbose());
+                    v.pause();
                     break;
 
                 case View.UserView.Event.AddMember:
-                    m.addMember(v.AddMember(m.getNextId()));
-                    _fs.SaveData(m.getMemberList());
+                    m.addMember(v.addMember(m.getNextId()));
+                    _fs.saveData(m.getMemberList());
                     break;
 
                 case View.UserView.Event.EditMember:
-                    v.ViewMembers(m.toStringCompact());
-                    int userIdToEdit = v.GetUserId("Enter user ID to edit");
+                    v.viewMembers(m.toStringCompact());
+                    int userIdToEdit = v.getUserId("Enter user ID to edit");
                     Model.Member memberToEdit = m.getMemberById(userIdToEdit);
                     if (memberToEdit == null)
                     {
-                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
+                        v.errorInput(View.UserView.Errors.MemberDontExist);
                     }
                     else
                     {
-                        Model.Member updatedMember = v.EditMember(memberToEdit.MemberId);
+                        Model.Member updatedMember = v.editMember(memberToEdit.MemberId);
                         memberToEdit.updateMember(updatedMember);
-                        _fs.SaveData(m.getMemberList());
+                        _fs.saveData(m.getMemberList());
                     }
                     break;
 
                 case View.UserView.Event.ViewSpecificMember:
-                    int userIdToView = v.GetUserId("Enter user ID to view");
+                    int userIdToView = v.getUserId("Enter user ID to view");
                     Model.Member memberToView = m.getMemberById(userIdToView);
-                    v.ViewMember(memberToView.toStringVerbose());
+                    v.viewMember(memberToView.toStringVerbose());
                     break;
 
                 case View.UserView.Event.RemoveMember:
-                    int response = v.RemoveMember();
-                    while (!m.removeMember(response))
+                    v.viewMembers(m.toStringCompact());
+                    int userIdToRemove = v.removeMember();
+                    bool removedUser = m.removeMember(userIdToRemove);
+                    if (!removedUser) 
                     {
-                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
-                        response = v.RemoveMember();
+                        v.errorInput(View.UserView.Errors.MemberDontExist);
                     }
-                    _fs.SaveData(m.getMemberList());
+                    _fs.saveData(m.getMemberList());
                     break;
 
                 case View.UserView.Event.AddBoat:
-                    v.ViewMembers(m.toStringCompact());
-                    int userIdToAddBoat = v.GetUserId("Please enter the id of the user for which you want to add a boat.");
+                    v.viewMembers(m.toStringCompact());
+                    int userIdToAddBoat = v.getUserId("Please enter the id of the user for which you want to add a boat.");
                     if (m.getMemberById(userIdToAddBoat) == null)
                     {
-                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
+                        v.errorInput(View.UserView.Errors.MemberDontExist);
                     }
                     else
                     {
-                        m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
-                        _fs.SaveData(m.getMemberList());
+                        m.getMemberById(userIdToAddBoat).addBoat(v.addBoat());
+                        _fs.saveData(m.getMemberList());
                     }
 
                     break;
 
                 case View.UserView.Event.RemoveBoat:
-                    v.ViewMembers(m.toStringCompact());
-                    int userIdToRemoveBoat = v.GetUserId("Please enter the id of the user for which you want to remove a boat.");
+                    v.viewMembers(m.toStringCompact());
+                    int userIdToRemoveBoat = v.getUserId("Please enter the id of the user for which you want to remove a boat.");
                     Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
                     if (memberToRemoveBoat == null)
                     {
-                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
+                        v.errorInput(View.UserView.Errors.MemberDontExist);
                     }
-                    else if (v.RemoveBoat(memberToRemoveBoat) == false)
+                    else if (v.removeBoat(memberToRemoveBoat) == false)
                     {
-                        v.ErrorInput(View.UserView.Errors.UserHasNoBoats);
+                        v.errorInput(View.UserView.Errors.UserHasNoBoats);
                     }
                     else
                     {
-                        _fs.SaveData(m.getMemberList());
+                        _fs.saveData(m.getMemberList());
                     }
                     break;
 
                 case View.UserView.Event.ChangeBoatData:
-                    v.ViewMembers(m.toStringCompact());
-                    int userId = v.GetUserId("Please enter the id of the user to change boat information on.");
+                    v.viewMembers(m.toStringCompact());
+                    int userId = v.getUserId("Please enter the id of the user to change boat information on.");
                     var member = m.getMemberById(userId);
 
 
                     if (member == null)
                     {
-                        v.ErrorInput(View.UserView.Errors.MemberDontExist);
+                        v.errorInput(View.UserView.Errors.MemberDontExist);
                     }
                     else
                     {
-                        var oldBoat = v.SelectBoat(member);
+                        var oldBoat = v.selectBoat(member);
                         if (oldBoat == null)
                         {
-                            v.ErrorInput(View.UserView.Errors.UserHasNoBoats);
+                            v.errorInput(View.UserView.Errors.UserHasNoBoats);
                         }
                         else
                         {
                             member.removeBoat(oldBoat.Id);
-                            m.getMemberById(userId).addBoat(v.AddBoat());
-                            _fs.SaveData(m.getMemberList());
+                            m.getMemberById(userId).addBoat(v.addBoat());
+                            _fs.saveData(m.getMemberList());
                         }
 
                     }
@@ -134,7 +135,7 @@ namespace Controller
 
 
                 case View.UserView.Event.None:
-                    v.ErrorInput(View.UserView.Errors.InvalidAction);
+                    v.errorInput(View.UserView.Errors.InvalidAction);
                     break;
 
                 default:

@@ -9,7 +9,7 @@ namespace Model
     {
         private string fileName = "./data.json";
 
-        public List<Member> GetData()
+        public List<Member> getData()
         {
             if (!File.Exists(fileName))
             {
@@ -18,7 +18,7 @@ namespace Model
                 Console.WriteLine("#########################################################");
 
                 var data = new List<Member>();
-                SaveData(data);
+                saveData(data);
                 return data;
             }
             else
@@ -29,7 +29,7 @@ namespace Model
             }
         }
 
-        public void SaveData(List<Member> members)
+        public void saveData(List<Member> members)
         {
             var data = JsonConvert.SerializeObject(members);
             File.WriteAllText(fileName, data);
