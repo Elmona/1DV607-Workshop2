@@ -96,6 +96,34 @@ namespace View
             return new Model.Member(name, id, socialNumber);
         }
 
+        public Model.Member EditMember(int id)
+        {
+            long newSocialId    = 1;
+
+            Console.WriteLine("\n");
+            Console.WriteLine("Changing member name.");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("");
+            Console.WriteLine("Enter a name to change it, or leave it blank to not change it.");
+            Console.Write(": ");
+            string newName = Console.ReadLine();
+            
+            if (newName == "")
+                newName = "x";
+
+            do
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("--------------------------------");
+                Console.WriteLine("Please enter members social security number.");
+                Console.WriteLine("Format: yymmddxxxx.");
+                Console.WriteLine("Enter '1' to not change it.");
+                Console.Write(": ");
+            } while (!long.TryParse(Console.ReadLine(), out newSocialId));
+
+            return new Model.Member(newName, id, newSocialId);
+        }
+
         public int RemoveMember()
         {
             int memberToBeRemoved;
@@ -256,10 +284,9 @@ namespace View
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(members);
-            Console.WriteLine("Press any key to return to main menu.");
+            Console.WriteLine("Press any key to return.");
             Console.ReadKey();
         }
-
 
         public void ErrorInput(int Error)
         {
