@@ -63,6 +63,15 @@ namespace Model
             return _boats.Count > 0;
         }
 
+        public void updateMember(Model.Member newMember)
+        {
+            if (newMember.SocialId > 1)
+                this.SocialId = newMember.SocialId;
+
+            if (newMember.Name != "x")
+                this.Name       = newMember.Name;            
+        }
+
         public long SocialId
         {
             get { return _socialId; }
@@ -119,7 +128,7 @@ namespace Model
             string returnString = $"Member name: {this.Name}, Member Id: {this.MemberId}, Social Id: {this.SocialId}, Number of boats: {this._boats.Count}\n";
             for (int i = 0; i < _boats.Count; i++)
             {
-                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} | Type - {_boats[i].Type} \n\n";
+                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} | Type - {_boats[i].Type} \n";
             }
             return returnString;
         }

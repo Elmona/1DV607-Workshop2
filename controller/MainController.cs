@@ -8,7 +8,7 @@ namespace Controller
         Model.Filesystem _fs;
         public MainController()
         {
-            _fs = new Model.Filesystem() { };
+            _fs = new Model.Filesystem(){};
         }
 
         public bool Start(View.UserView v, Model.MemberList m)
@@ -22,19 +22,36 @@ namespace Controller
             switch (e)
             {
                 case View.UserView.Event.ViewCompactList:
-                    v.ViewMembers(m.toStringCompact());
-                    break;
+                  v.ViewMembers(m.toStringCompact());
+                  break;
 
                 case View.UserView.Event.ViewDetailedList:
-                    v.ViewMembers(m.toStringVerbose());
-                    break;
+                  v.ViewMembers(m.toStringVerbose());
+                  break;
 
                 case View.UserView.Event.AddMember:
-                    m.addMember(v.AddMember(m.getNextId()));
-                    _fs.SaveData(m.getMemberList());
-                    break;
+                   m.addMember(v.AddMember(m.getNextId()));
+                  _fs.SaveData(m.getMemberList());
+                  break;
 
-                case View.UserView.Event.RemoveMember:
+                case View.UserView.Event.EditMember:
+                  v.ViewMembers(m.toStringCompact());
+                  int userIdToEdit          = v.GetUserId("Enter user ID to edit");
+                  Model.Member memberToEdit = m.getMemberById(userIdToEdit);
+                  if (memberToEdit == null)
+                  {
+                    v.ErrorInput(1);
+                  } else {
+                    Model.Member updatedMember = v.EditMember(memberToEdit.MemberId);
+                    memberToEdit.updateMember(updatedMember);
+                    _fs.SaveData(m.getMemberList());
+                  }
+                  break;
+                case View.UserView.Event.ViewSpecificMember:
+                  int userIdToView = v.GetUserId("Enter user ID to view");
+                  Model.Member memberToView = m.getMemberById(userIdToView);
+                  v.ViewMember(memberToView.toStringVerbose());
+                  break;
                     int response = v.RemoveMember();
                     while (!m.removeMember(response))
                     {
@@ -95,16 +112,16 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.Quit:
-                    return false;
-
+                  return false;
+                
 
                 case View.UserView.Event.None:
                     v.ErrorInput(View.UserView.Errors.InvalidAction);
                     break;
 
                 default:
-                    return true;
-
+                  return true;
+                
             }
             return true;
         }

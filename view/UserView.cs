@@ -8,6 +8,7 @@ namespace View
         {
             ViewCompactList,
             ViewDetailedList,
+            ViewSpecificMember,
             AddMember,
             RemoveMember,
             EditMember,
@@ -43,6 +44,7 @@ namespace View
             Console.WriteLine("6. Add boat");
             Console.WriteLine("7. Remove boat");
             Console.WriteLine("8. Change boat information");
+            Console.WriteLine("9. View specific member");
             Console.WriteLine("x. Quit");
             Console.Write("? ");
 
@@ -60,6 +62,7 @@ namespace View
             if (inputtedCharacter == '6') return Event.AddBoat;
             if (inputtedCharacter == '7') return Event.RemoveBoat;
             if (inputtedCharacter == '8') return Event.ChangeBoatData;
+            if (inputtedCharacter == '9') return Event.ViewSpecificMember;
             if (inputtedCharacter == 'x') return Event.Quit;
 
             return Event.None;
@@ -96,6 +99,34 @@ namespace View
             Console.ReadKey();
 
             return new Model.Member(name, id, socialNumber);
+        }
+
+        public Model.Member EditMember(int id)
+        {
+            long newSocialId    = 1;
+
+            Console.WriteLine("\n");
+            Console.WriteLine("Changing member name.");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("");
+            Console.WriteLine("Enter a name to change it, or leave it blank to not change it.");
+            Console.Write(": ");
+            string newName = Console.ReadLine();
+            
+            if (newName == "")
+                newName = "x";
+
+            do
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("--------------------------------");
+                Console.WriteLine("Please enter members social security number.");
+                Console.WriteLine("Format: yymmddxxxx.");
+                Console.WriteLine("Enter '1' to not change it.");
+                Console.Write(": ");
+            } while (!long.TryParse(Console.ReadLine(), out newSocialId));
+
+            return new Model.Member(newName, id, newSocialId);
         }
 
         public int RemoveMember()
@@ -239,6 +270,14 @@ namespace View
             return userId;
         }
 
+        public void ViewMember(string member)
+        {
+            Console.WriteLine("\n");
+            Console.ResetColor();
+            Console.WriteLine(member);
+            Console.WriteLine("\nPress any key to return.");
+            Console.ReadKey();
+        }
         public void ViewMembers(string members)
         {
             Console.WriteLine("\nYou chose to view all current members.\n");
@@ -246,12 +285,11 @@ namespace View
             Console.WriteLine("Showing all members:\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(members);
-            Console.WriteLine("Press any key to return to main menu.");
+            Console.WriteLine("Press any key to return.");
             Console.ReadKey();
         }
 
-
-        public void ErrorInput(Enum Errors)
+public void ErrorInput(Enum Errors)
         {
             Console.WriteLine("\n--------------------------------\n");
             Console.ForegroundColor = ConsoleColor.Red;
