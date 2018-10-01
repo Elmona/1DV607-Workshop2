@@ -76,7 +76,14 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.ChangeBoatData:
-                    v.ChangeBoatData();
+                    int userId = v.GetUserId("Please enter the id of the user to change boat information on.");
+                    var member = m.getMemberById(userId);
+                    var oldBoat = v.SelectBoat(member);
+
+                    member.removeBoat(oldBoat.Id);
+                    m.getMemberById(userId).addBoat(v.AddBoat());
+
+                    _fs.SaveData(m.getMemberList());
                     break;
 
                 case View.UserView.Event.Quit:

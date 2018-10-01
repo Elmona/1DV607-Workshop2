@@ -225,11 +225,18 @@ namespace View
             return new Model.Boat(boatId, returnType, boatLength);
         }
 
-        public void ChangeBoatData()
+        public Model.Boat SelectBoat(Model.Member member)
         {
-            Console.WriteLine("\nYou chose to change an added boat.");
-            int user = GetUserId("Enter user ID to change from");
+            int boatId;
 
+            Console.WriteLine(member.toStringVerbose());
+            do
+            {
+                Console.WriteLine("Select which boat to change.");
+                Console.Write(": ");
+            } while (!int.TryParse(Console.ReadLine(), out boatId));
+
+            return member.GetBoat(boatId);
         }
 
         public int GetUserId(string msg)
