@@ -38,7 +38,7 @@ namespace Controller
                   int response = v.RemoveMember();
                   while(!m.removeMember(response))
                   {
-                    v.ErrorInput("That user does not exist");
+                    v.ErrorInput(1);
                     response = v.RemoveMember();
                   }
                   _fs.SaveData(m.getMemberList());
@@ -46,22 +46,33 @@ namespace Controller
 
                 case View.UserView.Event.AddBoat:
                   int userIdToAddBoat = v.GetUserId();
-                  m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
+                  if (m.getMemberById(userIdToAddBoat) == null) {
+                    v.ErrorInput(1);
+                  } else {
+                    m.getMemberById(userIdToAddBoat).addBoat(v.AddBoat());
                   _fs.SaveData(m.getMemberList());
+                  }
+                  
                   break;
 
                 case View.UserView.Event.RemoveBoat:
                   int userIdToRemoveBoat = v.GetUserId();
                   Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
-                  v.RemoveBoat(memberToRemoveBoat);
+                  if (memberToRemoveBoat == null) {
+                    v.ErrorInput(1);
+                  }
+                  else if(v.RemoveBoat(memberToRemoveBoat) == false){
+                    v.ErrorInput(3);
+                  } else {
                   _fs.SaveData(m.getMemberList());
+                  }
                   break;
                 case View.UserView.Event.Quit:
                   return false;
                 
 
                 case View.UserView.Event.None:
-                  v.ErrorInput("Please press a character corresponding to one of the choices above.");  
+                  v.ErrorInput(2);  
                   break;
 
                 default:

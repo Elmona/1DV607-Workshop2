@@ -1,10 +1,10 @@
 namespace Model
 {
-  public enum BoatType
-  {
-    Sailboat,
-    MotorSailer,
-    KayakCanoe,
-    Other
-  }
+    public enum BoatType
+    {
+        Sailboat = 1,
+        MotorSailer,
+        KayakCanoe,
+        Other
+    }
 }

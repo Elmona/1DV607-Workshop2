@@ -2,62 +2,72 @@ using System;
 
 namespace Model
 {
-  class Boat
-  {
-    private int _id;
-    private int _length;
-    private BoatType _type;
-
-    public Boat(int id, BoatType type, int length)
+    class Boat
     {
-      Id = id;
-      Length = length;
-      _type = type;
-    }
+        private int _id;
+        private int _length;
+        private Model.BoatType _type;
 
-    public BoatType Type { get; set; }
-    public int Id
-    {
-      get
-      {
-        return _id;
-      }
-      set
-      {
-        if (value > 0)
+        public Boat(int id, Model.BoatType type, int length)
         {
-          _id = value;
+            Id = id;
+            Type = type;
+            Length = length;
         }
-        else
+
+        public BoatType Type
         {
-          throw new ArgumentOutOfRangeException("Id of a boat must be a positive number! (Greater than zero)");
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+            }
         }
-      }
-    }
-
-    public int Length
-    {
-      get { return _length; }
-      set
-      {
-        if (value > 0)
+        public int Id
         {
-          _length = value;
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    _id = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Id of a boat must be a positive number! (Greater than zero)");
+                }
+            }
         }
-        else
+
+        public int Length
         {
-          throw new ArgumentOutOfRangeException("Length of a boat must be a positive number! (Greater than zero)");
+            get { return _length; }
+            set
+            {
+                if (value > 0)
+                {
+                    _length = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Length of a boat must be a positive number! (Greater than zero)");
+                }
+            }
         }
-      }
+
+        public override string ToString()
+        {
+            return $"{this.Id.ToString()} | Boat of type {this.Type} | Length of boat: {this.Length}";
+        }
+
+
     }
-
-    public override string ToString()
-    {
-      return $"{this.Id.ToString()} | Boat of type {this.Type} | Length of boat: {this.Length}";
-    }
-
-
-  }
 
 
 
