@@ -10,8 +10,10 @@ namespace View
             ViewDetailedList,
             AddMember,
             RemoveMember,
+            EditMember,
             AddBoat,
             RemoveBoat,
+            ChangeBoatData,
             None,
             Quit
         }
@@ -29,8 +31,10 @@ namespace View
             Console.WriteLine("2. View Detailed list of members");
             Console.WriteLine("3. Add member");
             Console.WriteLine("4. Remove member");
-            Console.WriteLine("5. Add boat");
-            Console.WriteLine("6. Remove boat");
+            Console.WriteLine("5. Edit member");
+            Console.WriteLine("6. Add boat");
+            Console.WriteLine("7. Remove boat");
+            Console.WriteLine("8. Change boat information");
             Console.WriteLine("x. Quit");
             Console.Write("? ");
 
@@ -44,8 +48,10 @@ namespace View
             if (inputtedCharacter == '2') return Event.ViewDetailedList;
             if (inputtedCharacter == '3') return Event.AddMember;
             if (inputtedCharacter == '4') return Event.RemoveMember;
-            if (inputtedCharacter == '5') return Event.AddBoat;
-            if (inputtedCharacter == '6') return Event.RemoveBoat;
+            if (inputtedCharacter == '5') return Event.EditMember;
+            if (inputtedCharacter == '6') return Event.AddBoat;
+            if (inputtedCharacter == '7') return Event.RemoveBoat;
+            if (inputtedCharacter == '8') return Event.ChangeBoatData;
             if (inputtedCharacter == 'x') return Event.Quit;
 
             return Event.None;
@@ -219,7 +225,14 @@ namespace View
             return new Model.Boat(boatId, returnType, boatLength);
         }
 
-        public int GetUserId()
+        public void ChangeBoatData()
+        {
+            Console.WriteLine("\nYou chose to change an added boat.");
+            int user = GetUserId("Enter user ID to change from");
+
+        }
+
+        public int GetUserId(string msg)
         {
             int userId;
             do
@@ -227,7 +240,7 @@ namespace View
                 Console.WriteLine("\n");
                 Console.WriteLine("--------------------------------");
                 Console.WriteLine("");
-                Console.WriteLine("Please enter the id of the user for which you want to add or remove a boat.");
+                Console.WriteLine(msg);
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out userId));
             return userId;
@@ -246,6 +259,7 @@ namespace View
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
         }
+
 
         public void ErrorInput(int Error)
         {
