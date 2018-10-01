@@ -80,6 +80,11 @@ namespace Controller
                   _fs.SaveData(m.getMemberList());
                   }
                   break;
+                case View.UserView.Event.ViewSpecificMember:
+                  int userIdToView = v.GetUserId("Enter user ID to view");
+                  Model.Member memberToView = m.getMemberById(userIdToView);
+                  v.ViewMember(memberToView.toStringVerbose());
+                  break;
                 case View.UserView.Event.Quit:
                   return false;
                 

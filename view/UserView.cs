@@ -8,6 +8,7 @@ namespace View
         {
             ViewCompactList,
             ViewDetailedList,
+            ViewSpecificMember,
             AddMember,
             RemoveMember,
             EditMember,
@@ -35,6 +36,7 @@ namespace View
             Console.WriteLine("6. Add boat");
             Console.WriteLine("7. Remove boat");
             Console.WriteLine("8. Change boat information");
+            Console.WriteLine("9. View specific member");
             Console.WriteLine("x. Quit");
             Console.Write("? ");
 
@@ -52,6 +54,7 @@ namespace View
             if (inputtedCharacter == '6') return Event.AddBoat;
             if (inputtedCharacter == '7') return Event.RemoveBoat;
             if (inputtedCharacter == '8') return Event.ChangeBoatData;
+            if (inputtedCharacter == '9') return Event.ViewSpecificMember;
             if (inputtedCharacter == 'x') return Event.Quit;
 
             return Event.None;
@@ -274,6 +277,14 @@ namespace View
             return userId;
         }
 
+        public void ViewMember(string member)
+        {
+            Console.WriteLine("\n");
+            Console.ResetColor();
+            Console.WriteLine(member);
+            Console.WriteLine("\nPress any key to return.");
+            Console.ReadKey();
+        }
         public void ViewMembers(string members)
         {
             Console.WriteLine("\n");
