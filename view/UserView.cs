@@ -33,7 +33,7 @@ namespace View
             Console.WriteLine("6. Remove boat");
             Console.WriteLine("x. Quit");
             Console.Write("? ");
-            
+
         }
 
         public Event GetInputEvent()
@@ -47,7 +47,7 @@ namespace View
             if (inputtedCharacter == '5') return Event.AddBoat;
             if (inputtedCharacter == '6') return Event.RemoveBoat;
             if (inputtedCharacter == 'x') return Event.Quit;
-            
+
             return Event.None;
         }
 
@@ -55,8 +55,8 @@ namespace View
         {
             string name;
             long socialNumber;
-            
-            
+
+
             Console.WriteLine("\n");
             Console.WriteLine("You chose to add a member.");
             Console.WriteLine("--------------------------------");
@@ -76,7 +76,7 @@ namespace View
                 Console.WriteLine("");
                 Console.Write(": ");
             } while (!long.TryParse(Console.ReadLine(), out socialNumber));
-            
+
             Console.WriteLine("");
             Console.WriteLine("--------------------------------");
             Console.WriteLine("");
@@ -90,7 +90,7 @@ namespace View
             return new Model.Member(name, id, socialNumber);
         }
 
-       public int RemoveMember()
+        public int RemoveMember()
         {
             int memberToBeRemoved;
 
@@ -117,9 +117,11 @@ namespace View
             Console.WriteLine("You chose to remove a boat.");
             Console.WriteLine("--------------------------------");
             Console.WriteLine("");
-            if (!member.hasBoats()) {
+            if (!member.hasBoats())
+            {
                 return memberHasBoats;
-            } else if (member.hasBoats())
+            }
+            else if (member.hasBoats())
             {
                 do
                 {
@@ -133,9 +135,9 @@ namespace View
                     Console.WriteLine("Enter '0' to return.");
                     Console.Write(": ");
                 } while (!int.TryParse(Console.ReadLine(), out boatIdToBeDeleted));
-                
+
                 successfullyRemoved = member.removeBoat(boatIdToBeDeleted);
-                
+
                 while (!successfullyRemoved && boatIdToBeDeleted != 0)
                 {
                     Console.WriteLine("");
@@ -151,22 +153,22 @@ namespace View
                         Console.WriteLine("Enter '0' to return.");
                         Console.Write(": ");
                     } while (!int.TryParse(Console.ReadLine(), out boatIdToBeDeleted));
-                    
+
                     successfullyRemoved = member.removeBoat(boatIdToBeDeleted);
 
-                }   
-            } 
+                }
+            }
 
-                    // If Removal was successful
-                    Console.WriteLine("");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    System.Console.WriteLine("Boat was successfully removed from member!");
-                    Console.WriteLine("--------------------------------");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any key to return to main menu.");
-                    Console.ReadKey();
-                    
+            // If Removal was successful
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Green;
+            System.Console.WriteLine("Boat was successfully removed from member!");
+            Console.WriteLine("--------------------------------");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("");
+            Console.WriteLine("Press any key to return to main menu.");
+            Console.ReadKey();
+
             return successfullyRemoved;
         }
 
@@ -174,7 +176,7 @@ namespace View
         {
             int boatId;
             int boatLength;
-            string answer;
+            // int answer;
             int correctChoice;
 
             Console.WriteLine("\n");
@@ -202,19 +204,19 @@ namespace View
                 Console.WriteLine("3. Kayak/Canoe");
                 Console.WriteLine("4. Other");
                 Console.Write(": ");
-                answer = Console.ReadLine();;
-            } while (!int.TryParse(answer, out correctChoice) && (correctChoice > 0 && correctChoice < 5));
+            } while (!int.TryParse(Console.ReadLine(), out correctChoice) && (correctChoice > 0 && correctChoice < 5));
 
-            Model.BoatType returnType = (Model.BoatType) Enum.Parse(typeof(Model.BoatType), answer);
+            Model.BoatType returnType = (Model.BoatType)Enum.ToObject(typeof(Model.BoatType), correctChoice);
+            Console.WriteLine("Blaha" + returnType);
 
-                    Console.WriteLine("");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    System.Console.WriteLine("Boat was successfully added to member!");
-                    Console.WriteLine("--------------------------------");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("");
-                    Console.WriteLine("Press any key to return to main menu.");
-                    Console.ReadKey();
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Green;
+            System.Console.WriteLine("Boat was successfully added to member!");
+            Console.WriteLine("--------------------------------");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("");
+            Console.WriteLine("Press any key to return to main menu.");
+            Console.ReadKey();
 
             return new Model.Boat(boatId, returnType, boatLength);
         }
@@ -235,7 +237,7 @@ namespace View
 
         public void ViewMembers(string members)
         {
-           
+
             Console.WriteLine("\n");
             Console.WriteLine("You chose to view all current members.");
             Console.WriteLine("--------------------------------");
@@ -252,50 +254,51 @@ namespace View
         public void ErrorInput(int Error)
         {
             int caseSwitch = Error;
-            switch (caseSwitch) {
+            switch (caseSwitch)
+            {
 
                 case 1:
-                 Console.WriteLine("");
-                 Console.WriteLine("--------------------------------");
-                 Console.WriteLine("");
-                 Console.ForegroundColor = ConsoleColor.Red;
-                 Console.WriteLine("A Member with that ID does not exist!");
-                 Console.WriteLine("");
-                 Console.ForegroundColor = ConsoleColor.Yellow;
-                 Console.WriteLine("Press any key to return to main menu.");
-                 Console.ReadKey();
-                 break;
+                    Console.WriteLine("");
+                    Console.WriteLine("--------------------------------");
+                    Console.WriteLine("");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("A Member with that ID does not exist!");
+                    Console.WriteLine("");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.ReadKey();
+                    break;
 
-                 case 2:
-                 Console.WriteLine("");
-                 Console.WriteLine("--------------------------------");
-                 Console.WriteLine("");
-                 Console.ForegroundColor = ConsoleColor.Red;
-                 Console.WriteLine("Please press one of the characters that corresponds to your desired action");
-                 Console.WriteLine("");
-                 Console.ForegroundColor = ConsoleColor.Yellow;
-                 Console.WriteLine("Press any key to return to main menu.");
-                 Console.ReadKey();
-                 break;
+                case 2:
+                    Console.WriteLine("");
+                    Console.WriteLine("--------------------------------");
+                    Console.WriteLine("");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please press one of the characters that corresponds to your desired action");
+                    Console.WriteLine("");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.ReadKey();
+                    break;
 
-                 case 3:
-                Console.WriteLine("");
-                Console.ForegroundColor = ConsoleColor.Red;
-                System.Console.WriteLine("That user has no boats to be removed!");
-                Console.WriteLine("--------------------------------");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("");
-                Console.WriteLine("Press any key to return to main menu.");
-                Console.ReadKey();
-                break;
+                case 3:
+                    Console.WriteLine("");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("That user has no boats to be removed!");
+                    Console.WriteLine("--------------------------------");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("");
+                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.ReadKey();
+                    break;
 
 
                 default:
-              Console.WriteLine("Default case");
-              break;
+                    Console.WriteLine("Default case");
+                    break;
             }
 
-            
+
         }
     }
 }
