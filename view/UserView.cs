@@ -105,11 +105,9 @@ namespace View
             string name;
             long socialNumber;
 
-
             Console.WriteLine("\n");
             Console.WriteLine("\nPlease enter a name.");
             Console.Write("? ");
-
             name = Console.ReadLine();
 
             do
@@ -215,13 +213,11 @@ namespace View
                     } while (!int.TryParse(Console.ReadLine(), out boatIdToBeDeleted));
 
                     successfullyRemoved = member.removeBoat(boatIdToBeDeleted);
-
                 }
             }
 
-
             Console.ForegroundColor = ConsoleColor.Green;
-            System.Console.WriteLine("\nBoat was successfully removed from member!");
+            Console.WriteLine("\nBoat was successfully removed from member!");
             Console.WriteLine("--------------------------------");
             Console.WriteLine("\nPress any key to return to main menu.");
             Console.ReadKey();
@@ -231,7 +227,6 @@ namespace View
 
         public Model.Boat addBoat()
         {
-            // int boatId;
             int boatLength;
             int correctChoice;
 
@@ -275,7 +270,6 @@ namespace View
             } while (!int.TryParse(Console.ReadLine(), out boatIndex));
 
             return boatIndex;
-            // return member.GetBoat(boatIndex);
         }
 
         public int getUserId()
@@ -291,8 +285,7 @@ namespace View
 
         public void viewSpecificMember(Model.Member member)
         {
-            Console.WriteLine("\n");
-            Console.WriteLine("Showing specific member:");
+            Console.WriteLine("\nShowing specific member:");
             Console.ForegroundColor = ConsoleColor.Green;
             viewMemberVerbose(member);
             Console.ResetColor();
