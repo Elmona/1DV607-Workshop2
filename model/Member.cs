@@ -15,15 +15,15 @@ namespace Model
             Name = name;
             MemberId = memberId;
             SocialId = socialId;
-            _boats = new List<Boat>{};
+            _boats = new List<Boat> { };
         }
 
-        public string Name 
+        public string Name
         {
             get { return _name; }
             private set
             {
-                if ( value.Length > 0)
+                if (value.Length > 0)
                 {
                     _name = value;
                 }
@@ -31,27 +31,28 @@ namespace Model
                 {
                     throw new ArgumentOutOfRangeException("Name of a Member cannot be set to and empty string!");
                 }
-            } 
+            }
         }
 
-        public List<Model.Boat> Boats 
+        public List<Model.Boat> Boats
         {
             get { return _boats; }
             private set
             {
                 _boats = value;
-            } 
+            }
         }
 
         public int MemberId
         {
             get { return _memberId; }
-            set {
-                if ( value > 0)
+            set
+            {
+                if (value > 0)
                 {
                     _memberId = value;
                 }
-                else 
+                else
                 {
                     throw new ArgumentOutOfRangeException("MemberId of a member must be a positive number over 0");
                 }
@@ -69,25 +70,26 @@ namespace Model
                 this.SocialId = newMember.SocialId;
 
             if (newMember.Name != "x")
-                this.Name       = newMember.Name;            
+                this.Name = newMember.Name;
         }
 
         public long SocialId
         {
             get { return _socialId; }
-            set {
-                if ( value > 0)
+            set
+            {
+                if (value > 0)
                 {
                     _socialId = value;
                 }
-                else 
+                else
                 {
                     throw new ArgumentOutOfRangeException("SocialId of a member must be a positive number over 0");
                 }
-            } 
+            }
         }
 
-        public void addBoat (Model.Boat boat)
+        public void addBoat(Model.Boat boat)
         {
             _boats.Add(boat);
         }
@@ -95,7 +97,7 @@ namespace Model
         public bool removeBoat(int id)
         {
             bool boatFound = false;
-            for ( int i = 0; i < _boats.Count; i++ )
+            for (int i = 0; i < _boats.Count; i++)
             {
                 if (_boats[i].Id == id)
                 {
@@ -106,33 +108,31 @@ namespace Model
             return boatFound;
         }
         // Not used?
-        public Model.Boat GetBoat(int id)
-        {
-            for ( int i = 0; i < _boats.Count; i++ )
-            {
-                if (_boats[i].Id == id)
-                {
-                    return _boats[i];
-                }
-            }
-            return null;
-        }
+        // public Model.Boat GetBoat(int id)
+        // {
+        //     for ( int i = 0; i < _boats.Count; i++ )
+        //     {
+        //         if (_boats[i].Id == id)
+        //         {
+        //             return _boats[i];
+        //         }
+        //     }
+        //     return null;
+        // }
 
-        public string toStringCompact()
-        {
-            return $"Member name: {this.Name}, Id: {this.MemberId}, Social security number: {this.SocialId}, Number of boats: {this._boats.Count} \n";
-        }
+        // public string toStringCompact()
+        // {
+        //     return $"Member name: {this.Name}, Id: {this.MemberId}, Social security number: {this.SocialId}, Number of boats: {this._boats.Count} \n";
+        // }
 
-        public string toStringVerbose()
-        {
-            string returnString = $"Member name: {this.Name}, Member Id: {this.MemberId}, Social Id: {this.SocialId}, Number of boats: {this._boats.Count}\n";
-            for (int i = 0; i < _boats.Count; i++)
-            {
-                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} cm | Type - {_boats[i].Type} \n";
-            }
-            return returnString;
-        }
-
-        
+        // public string toStringVerbose()
+        // {
+        //     string returnString = $"Member name: {this.Name}, Member Id: {this.MemberId}, Social Id: {this.SocialId}, Number of boats: {this._boats.Count}\n";
+        //     for (int i = 0; i < _boats.Count; i++)
+        //     {
+        //         returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} cm | Type - {_boats[i].Type} \n";
+        //     }
+        //     return returnString;
+        // }
     }
 }
