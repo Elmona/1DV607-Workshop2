@@ -83,20 +83,20 @@ namespace View
 
         public void viewMemberVerbose(Model.Member m)
         {
-            Console.WriteLine($"ID: {m.MemberId} Name: {m.Name} Social security number: {m.SocialId} Number of boats: {m.Boats.Count}");
+            Console.WriteLine($"ID: {m.MemberId,-2} Name: {m.Name,-10} Social security number: {m.SocialId} Number of boats: {m.Boats.Count}");
             viewBoats(m.Boats);
         }
 
         public void viewMemberCompact(Model.Member m)
         {
-            Console.WriteLine($"ID: {m.MemberId} Name: {m.Name} Social security number: {m.SocialId} Number of boats: {m.Boats.Count}");
+            Console.WriteLine($"ID: {m.MemberId,-2} Name: {m.Name,-10} Social security number: {m.SocialId} Number of boats: {m.Boats.Count}");
         }
 
         public void viewBoats(List<Model.Boat> boats)
         {
             for (int i = 0; i < boats.Count; i++)
             {
-                Console.WriteLine($"Boat ID: {i}: {boats[i].Type} {boats[i].Length} cm");
+                Console.WriteLine($"Boat ID: {i} {boats[i].Type,15} {boats[i].Length} cm");
             }
         }
 
