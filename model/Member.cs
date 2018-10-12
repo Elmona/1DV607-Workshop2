@@ -123,7 +123,7 @@ namespace Model
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Boat index doesn't exist");
+                return null;
             }
             
             // for ( int i = 0; i < _boats.Count; i++ )
