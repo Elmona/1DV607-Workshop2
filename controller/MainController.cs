@@ -36,7 +36,7 @@ namespace Controller
 
                 case View.UserView.Event.EditMember:
                     v.viewMembers(m.toStringCompact());
-                    int userIdToEdit = v.getUserId("Enter user ID to edit");
+                    int userIdToEdit = v.getUserId();
                     Model.Member memberToEdit = m.getMemberById(userIdToEdit);
                     if (memberToEdit == null)
                     {
@@ -52,7 +52,7 @@ namespace Controller
 
                 case View.UserView.Event.ViewSpecificMember:
                     v.viewMembers(m.toStringCompact());
-                    int userIdToView = v.getUserId("Enter member ID to view that specific member");
+                    int userIdToView = v.getUserId();
                     Model.Member memberToView = m.getMemberById(userIdToView);
                     if (memberToView == null)
                     {
@@ -79,7 +79,7 @@ namespace Controller
 
                 case View.UserView.Event.AddBoat:
                     v.viewMembers(m.toStringCompact());
-                    int userIdToAddBoat = v.getUserId("Please enter the id of the user for which you want to add a boat.");
+                    int userIdToAddBoat = v.getUserId();
                     if (m.getMemberById(userIdToAddBoat) == null)
                     {
                         v.errorInput(View.UserView.Errors.MemberDontExist);
@@ -94,7 +94,7 @@ namespace Controller
 
                 case View.UserView.Event.RemoveBoat:
                     v.viewMembers(m.toStringCompact());
-                    int userIdToRemoveBoat = v.getUserId("Please enter the id of the user for which you want to remove a boat.");
+                    int userIdToRemoveBoat = v.getUserId();
                     Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
                     if (memberToRemoveBoat == null)
                     {
@@ -112,7 +112,7 @@ namespace Controller
 
                 case View.UserView.Event.ChangeBoatData:
                     v.viewMembers(m.toStringCompact());
-                    int userId = v.getUserId("Please enter the id of the user to change boat information on.");
+                    int userId = v.getUserId();
                     var member = m.getMemberById(userId);
 
 
@@ -140,7 +140,6 @@ namespace Controller
 
                 case View.UserView.Event.Quit:
                     return false;
-
 
                 case View.UserView.Event.None:
                     v.errorInput(View.UserView.Errors.InvalidAction);
