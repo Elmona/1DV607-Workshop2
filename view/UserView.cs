@@ -100,13 +100,13 @@ namespace View
 
         public Model.Member editMember(int id)
         {
-            long newSocialId    = 1;
+            long newSocialId = 1;
 
             Console.WriteLine("\n");
             Console.WriteLine("Enter a name to change it, or leave it blank to not change it.");
             Console.Write(": ");
             string newName = Console.ReadLine();
-            
+
             if (newName == "")
                 newName = "x";
 
@@ -135,7 +135,7 @@ namespace View
             } while (!int.TryParse(Console.ReadLine(), out memberToBeRemoved));
 
             return memberToBeRemoved;
-            
+
         }
 
         public bool removeBoat(Model.Member member)
@@ -186,7 +186,7 @@ namespace View
                 }
             }
 
-            
+
             Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("\nBoat was successfully removed from member!");
             Console.WriteLine("--------------------------------");
@@ -249,12 +249,12 @@ namespace View
             return member.GetBoat(boatId);
         }
 
-        public int getUserId(string msg)
+        public int getUserId()
         {
             int userId;
             do
             {
-                Console.WriteLine(msg);
+                Console.WriteLine("Enter member ID:");
                 Console.Write(": ");
             } while (!int.TryParse(Console.ReadLine(), out userId));
             return userId;
@@ -278,7 +278,7 @@ namespace View
             Console.WriteLine(members);
         }
 
-public void errorInput(Enum Errors)
+        public void errorInput(Enum Errors)
         {
             Console.WriteLine("\n--------------------------------\n");
             Console.ForegroundColor = ConsoleColor.Red;
