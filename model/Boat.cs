@@ -4,13 +4,11 @@ namespace Model
 {
     class Boat
     {
-        private int _id;
         private int _length;
         private Model.BoatType _type;
 
-        public Boat(int id, Model.BoatType type, int length)
+        public Boat(Model.BoatType type, int length)
         {
-            Id = id;
             Type = type;
             Length = length;
         }
@@ -26,24 +24,24 @@ namespace Model
                 _type = value;
             }
         }
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                if (value > 0)
-                {
-                    _id = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Id of a boat must be a positive number! (Greater than zero)");
-                }
-            }
-        }
+        // public int Id
+        // {
+        //     get
+        //     {
+        //         return _id;
+        //     }
+        //     set
+        //     {
+        //         if (value > 0)
+        //         {
+        //             _id = value;
+        //         }
+        //         else
+        //         {
+        //             throw new ArgumentOutOfRangeException("Id of a boat must be a positive number! (Greater than zero)");
+        //         }
+        //     }
+        // }
 
         public int Length
         {
@@ -63,7 +61,7 @@ namespace Model
 
         public override string ToString()
         {
-            return $"{this.Id.ToString()} | Boat of type {this.Type} | Length of boat: {this.Length}";
+            return $"Boat of type {this.Type} | Length of boat: {this.Length}";
         }
 
 

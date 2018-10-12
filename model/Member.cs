@@ -92,30 +92,48 @@ namespace Model
             _boats.Add(boat);
         }
 
-        public bool removeBoat(int id)
+        public bool removeBoat(int indexOfBoat)
         {
             bool boatFound = false;
-            for ( int i = 0; i < _boats.Count; i++ )
+
+            if (indexOfBoat <= _boats.Count && indexOfBoat >= 0)
             {
-                if (_boats[i].Id == id)
-                {
-                    boatFound = true;
-                    _boats.RemoveAt(i);
-                }
+                boatFound = true;
+                _boats.RemoveAt(indexOfBoat);
             }
+
             return boatFound;
+
+            // for ( int i = 0; i < _boats.Count; i++ )
+            // {
+            //     if (_boats[i].Id == id)
+            //     {
+            //         boatFound = true;
+            //         _boats.RemoveAt(i);
+            //     }
+            // }
+            // return boatFound;
         }
-        // Not used?
-        public Model.Boat GetBoat(int id)
+
+        public Model.Boat GetBoat(int indexOfBoat)
         {
-            for ( int i = 0; i < _boats.Count; i++ )
+            if (indexOfBoat <= _boats.Count && indexOfBoat >= 0)
             {
-                if (_boats[i].Id == id)
-                {
-                    return _boats[i];
-                }
+                return _boats[indexOfBoat];
             }
-            return null;
+            else
+            {
+                return null;
+            }
+            
+            // for ( int i = 0; i < _boats.Count; i++ )
+            // {
+            //     if (_boats[i].Id == id)
+            //     {
+            //         return _boats[i];
+            //     }
+            // }
+            // return null;
         }
 
         public string toStringCompact()
@@ -128,7 +146,7 @@ namespace Model
             string returnString = $"Member name: {this.Name}, Member Id: {this.MemberId}, Social Id: {this.SocialId}, Number of boats: {this._boats.Count}\n";
             for (int i = 0; i < _boats.Count; i++)
             {
-                returnString += $"--- Boat number {i} | ID - {_boats[i].Id} | Length - {_boats[i].Length} cm | Type - {_boats[i].Type} \n";
+                returnString += $"--- Boat number {i} | Length - {_boats[i].Length} cm | Type - {_boats[i].Type} \n";
             }
             return returnString;
         }

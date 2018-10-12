@@ -122,14 +122,15 @@ namespace Controller
                     }
                     else
                     {
-                        var oldBoat = v.selectBoat(member);
+                        int boatIndex = v.selectBoat(member);
+                        var oldBoat = member.GetBoat(boatIndex);
                         if (oldBoat == null)
                         {
                             v.errorInput(View.UserView.Errors.UserHasNoBoats);
                         }
                         else
                         {
-                            member.removeBoat(oldBoat.Id);
+                            member.removeBoat(boatIndex);
                             m.getMemberById(userId).addBoat(v.addBoat());
                             _fs.saveData(m.getMemberList());
                         }
