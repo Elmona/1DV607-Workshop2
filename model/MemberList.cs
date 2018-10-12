@@ -33,7 +33,7 @@ namespace Model
         public bool removeMember(int id)
         {
             bool memberFound = false;
-            for ( int i = 0; i < _members.Count; i++ )
+            for (int i = 0; i < _members.Count; i++)
             {
                 if (_members[i].MemberId == id)
                 {
@@ -57,25 +57,30 @@ namespace Model
             return maxValue;
         }
 
-        public string toStringCompact() 
+        public List<Member> getMembers()
         {
-            string returnString = "";
-            foreach (var member in _members)
-            {
-                returnString += member.toStringCompact();
-            }
-            return returnString;
+            return _members;
         }
 
-        public string toStringVerbose() 
-        {
-            string returnString = "";
-            foreach (var member in _members)
-            {
-                returnString += member.toStringVerbose();
-            }
-            return returnString;
-        }
+        // public string toStringCompact() 
+        // {
+        //     string returnString = "";
+        //     foreach (var member in _members)
+        //     {
+        //         returnString += member.toStringCompact();
+        //     }
+        //     return returnString;
+        // }
+
+        // public string toStringVerbose() 
+        // {
+        //     string returnString = "";
+        //     foreach (var member in _members)
+        //     {
+        //         returnString += member.toStringVerbose();
+        //     }
+        //     return returnString;
+        // }
 
     }
 }

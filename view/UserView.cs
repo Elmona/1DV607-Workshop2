@@ -68,6 +68,11 @@ namespace View
             return Event.None;
         }
 
+        public void viewMemberListCompact(Model.MemberList m)
+        {
+            Console.WriteLine("Viewing ");
+        }
+
         public Model.Member addMember(int id)
         {
             string name;
@@ -271,12 +276,12 @@ namespace View
 
         public void pause() => Console.ReadKey();
 
-        public void viewMembers(string members)
-        {
-            Console.WriteLine("\nShowing all members:\n");
-            // Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(members);
-        }
+        // public void viewMembers(string members)
+        // {
+        //     Console.WriteLine("\nShowing all members:\n");
+        //     // Console.ForegroundColor = ConsoleColor.Yellow;
+        //     Console.WriteLine(members);
+        // }
 
         public void errorInput(Enum Errors)
         {
