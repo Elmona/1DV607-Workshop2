@@ -1,14 +1,13 @@
 
 using System;
-
 namespace Controller
 {
     class MainController
     {
         Model.Filesystem _fs;
-        public MainController()
+        public MainController(Model.Filesystem fs)
         {
-            _fs = new Model.Filesystem() { };
+            _fs = fs;
         }
 
         public bool start(View.UserView v, Model.MemberList m)
@@ -16,7 +15,6 @@ namespace Controller
             v.displayInstructions();
 
             View.UserView.Event e;
-
             e = v.getInputEvent();
 
             switch (e)
@@ -56,20 +54,23 @@ namespace Controller
                     v.viewMembers(m.toStringCompact());
                     int userIdToView = v.getUserId("Enter member ID to view that specific member");
                     Model.Member memberToView = m.getMemberById(userIdToView);
-                    if (memberToView == null) {
+                    if (memberToView == null)
+                    {
                         v.errorInput(View.UserView.Errors.MemberDontExist);
-                    } else {
-                      v.viewSpecificMember(memberToView.toStringVerbose());
-                      v.pause();
                     }
-                    
+                    else
+                    {
+                        v.viewSpecificMember(memberToView.toStringVerbose());
+                        v.pause();
+                    }
+
                     break;
 
                 case View.UserView.Event.RemoveMember:
                     v.viewMembers(m.toStringCompact());
                     int userIdToRemove = v.removeMember();
                     bool removedUser = m.removeMember(userIdToRemove);
-                    if (!removedUser) 
+                    if (!removedUser)
                     {
                         v.errorInput(View.UserView.Errors.MemberDontExist);
                     }
