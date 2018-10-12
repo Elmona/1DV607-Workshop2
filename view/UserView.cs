@@ -71,13 +71,13 @@ namespace View
 
         public void viewMemberListCompact(List<Model.Member> m)
         {
-            Console.WriteLine("Viewing Compact");
+            Console.WriteLine("\nViewing Compact");
             m.ForEach(i => viewMemberCompact(i));
         }
 
         public void viewMemberListVerbose(List<Model.Member> m)
         {
-            Console.WriteLine("Viewing Verbose");
+            Console.WriteLine("\nViewing Verbose");
             m.ForEach(i => viewMemberVerbose(i));
         }
 
@@ -96,7 +96,7 @@ namespace View
         {
             for (int i = 0; i < boats.Count; i++)
             {
-                Console.WriteLine($"ID: {i}: {boats[i].Type} {boats[i].Length} cm");
+                Console.WriteLine($"Boat ID: {i}: {boats[i].Type} {boats[i].Length} cm");
             }
         }
 
@@ -190,7 +190,7 @@ namespace View
                     Console.WriteLine("--------------------------------");
                     Console.ForegroundColor = ConsoleColor.Yellow;
 
-                    viewMemberCompact(member);
+                    viewMemberVerbose(member);
 
                     Console.ResetColor();
                     Console.WriteLine("\nPlease enter the id of the boat you want to delete.");
@@ -291,22 +291,14 @@ namespace View
 
         public void viewSpecificMember(Model.Member member)
         {
-            // TODO
             Console.WriteLine("\n");
             Console.WriteLine("Showing specific member:");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(member);
+            viewMemberVerbose(member);
             Console.ResetColor();
         }
 
         public void pause() => Console.ReadKey();
-
-        // public void viewMembers(string members)
-        // {
-        //     Console.WriteLine("\nShowing all members:\n");
-        //     // Console.ForegroundColor = ConsoleColor.Yellow;
-        //     Console.WriteLine(members);
-        // }
 
         public void errorInput(Enum Errors)
         {
