@@ -56,31 +56,5 @@ namespace Model
             }
             return maxValue;
         }
-
-        public List<Member> getMembers()
-        {
-            return _members;
-        }
-
-        // public string toStringCompact() 
-        // {
-        //     string returnString = "";
-        //     foreach (var member in _members)
-        //     {
-        //         returnString += member.toStringCompact();
-        //     }
-        //     return returnString;
-        // }
-
-        // public string toStringVerbose() 
-        // {
-        //     string returnString = "";
-        //     foreach (var member in _members)
-        //     {
-        //         returnString += member.toStringVerbose();
-        //     }
-        //     return returnString;
-        // }
-
     }
 }

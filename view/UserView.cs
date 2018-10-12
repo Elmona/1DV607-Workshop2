@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace View
 {
@@ -68,9 +69,35 @@ namespace View
             return Event.None;
         }
 
-        public void viewMemberListCompact(Model.MemberList m)
+        public void viewMemberListCompact(List<Model.Member> m)
         {
-            Console.WriteLine("Viewing ");
+            Console.WriteLine("Viewing Compact");
+            m.ForEach(i => viewMemberCompact(i));
+        }
+
+        public void viewMemberListVerbose(List<Model.Member> m)
+        {
+            Console.WriteLine("Viewing Verbose");
+            m.ForEach(i => viewMemberVerbose(i));
+        }
+
+        public void viewMemberVerbose(Model.Member m)
+        {
+            Console.WriteLine($"ID: {m.MemberId} Name: {m.Name} Social security number: {m.SocialId} Number of boats: {m.Boats.Count}");
+            viewBoats(m.Boats);
+        }
+
+        public void viewMemberCompact(Model.Member m)
+        {
+            Console.WriteLine($"ID: {m.MemberId} Name: {m.Name} Social security number: {m.SocialId} Number of boats: {m.Boats.Count}");
+        }
+
+        public void viewBoats(List<Model.Boat> boats)
+        {
+            for (int i = 0; i < boats.Count; i++)
+            {
+                Console.WriteLine($"ID: {i}: {boats[i].Type} {boats[i].Length} cm");
+            }
         }
 
         public Model.Member addMember(int id)
@@ -162,7 +189,9 @@ namespace View
                     Console.WriteLine("You're currently editing this member:");
                     Console.WriteLine("--------------------------------");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine(member.toStringVerbose());
+
+                    viewMemberCompact(member);
+
                     Console.ResetColor();
                     Console.WriteLine("\nPlease enter the id of the boat you want to delete.");
                     Console.Write(": ");
@@ -208,11 +237,6 @@ namespace View
 
             Console.WriteLine("\nYou chose to add a boat.");
             Console.WriteLine("--------------------------------");
-            // do
-            // {
-            //     Console.WriteLine("\nPlease enter the id of the boat you want to add.");
-            //     Console.Write(": ");
-            // } while (!int.TryParse(Console.ReadLine(), out boatId));
             do
             {
                 Console.WriteLine("\nPlease enter the length of the boat you want to add (in centimeters)");
@@ -243,7 +267,7 @@ namespace View
         {
             int boatIndex;
 
-            Console.WriteLine(member.toStringVerbose());
+            viewMemberVerbose(member);
             do
             {
                 Console.WriteLine("Select which boat to change.");
@@ -265,8 +289,9 @@ namespace View
             return userId;
         }
 
-        public void viewSpecificMember(string member)
+        public void viewSpecificMember(Model.Member member)
         {
+            // TODO
             Console.WriteLine("\n");
             Console.WriteLine("Showing specific member:");
             Console.ForegroundColor = ConsoleColor.Green;

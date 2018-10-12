@@ -99,11 +99,11 @@ namespace Model
             bool boatFound = false;
             for (int i = 0; i < _boats.Count; i++)
 
-            if (indexOfBoat <= _boats.Count && indexOfBoat >= 0)
-            {
-                boatFound = true;
-                _boats.RemoveAt(indexOfBoat);
-            }
+                if (indexOfBoat <= _boats.Count && indexOfBoat >= 0)
+                {
+                    boatFound = true;
+                    _boats.RemoveAt(indexOfBoat);
+                }
 
             return boatFound;
         }
@@ -118,17 +118,6 @@ namespace Model
             {
                 return null;
             }
-
         }
-
-        // public string toStringVerbose()
-        // {
-        //     string returnString = $"Member name: {this.Name}, Member Id: {this.MemberId}, Social Id: {this.SocialId}, Number of boats: {this._boats.Count}\n";
-        //     for (int i = 0; i < _boats.Count; i++)
-        //     {
-        //         returnString += $"--- Boat number {i} | Length - {_boats[i].Length} cm | Type - {_boats[i].Type} \n";
-        //     }
-        //     return returnString;
-        // }
     }
 }

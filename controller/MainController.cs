@@ -20,12 +20,12 @@ namespace Controller
             switch (e)
             {
                 case View.UserView.Event.ViewCompactList:
-                    v.viewMembers(m.toStringCompact());
+                    v.viewMemberListCompact(m.getMemberList());
                     v.pause();
                     break;
 
                 case View.UserView.Event.ViewDetailedList:
-                    v.viewMembers(m.toStringVerbose());
+                    v.viewMemberListVerbose(m.getMemberList());
                     v.pause();
                     break;
 
@@ -35,7 +35,8 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.EditMember:
-                    v.viewMembers(m.toStringCompact());
+                    v.viewMemberListCompact(m.getMemberList());
+
                     int userIdToEdit = v.getUserId();
                     Model.Member memberToEdit = m.getMemberById(userIdToEdit);
                     if (memberToEdit == null)
@@ -51,8 +52,8 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.ViewSpecificMember:
-                    // v.viewMembers(m.toStringCompact());
-                    v.viewMembersListCompact(m.getMemberList());
+                    v.viewMemberListCompact(m.getMemberList());
+
                     int userIdToView = v.getUserId();
                     Model.Member memberToView = m.getMemberById(userIdToView);
                     if (memberToView == null)
@@ -61,14 +62,15 @@ namespace Controller
                     }
                     else
                     {
-                        v.viewSpecificMember(memberToView.toStringVerbose());
+                        v.viewSpecificMember(memberToView);
                         v.pause();
                     }
 
                     break;
 
                 case View.UserView.Event.RemoveMember:
-                    v.viewMembers(m.toStringCompact());
+                    v.viewMemberListCompact(m.getMemberList());
+
                     int userIdToRemove = v.removeMember();
                     bool removedUser = m.removeMember(userIdToRemove);
                     if (!removedUser)
@@ -79,7 +81,8 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.AddBoat:
-                    v.viewMembers(m.toStringCompact());
+                    v.viewMemberListCompact(m.getMemberList());
+
                     int userIdToAddBoat = v.getUserId();
                     if (m.getMemberById(userIdToAddBoat) == null)
                     {
@@ -94,7 +97,8 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.RemoveBoat:
-                    v.viewMembers(m.toStringCompact());
+                    v.viewMemberListCompact(m.getMemberList());
+
                     int userIdToRemoveBoat = v.getUserId();
                     Model.Member memberToRemoveBoat = m.getMemberById(userIdToRemoveBoat);
                     if (memberToRemoveBoat == null)
@@ -112,7 +116,8 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.ChangeBoatData:
-                    v.viewMembers(m.toStringCompact());
+                    v.viewMemberListCompact(m.getMemberList());
+
                     int userId = v.getUserId();
                     var member = m.getMemberById(userId);
 
