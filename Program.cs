@@ -7,14 +7,22 @@ namespace BoatClub
     {
         static void Main(string[] args)
         {
-            var fs = new Model.Filesystem();
-            var memberlist = fs.getData();
-            var m = new Model.MemberList(memberlist);
-            var v = new View.UserView();
+            try
+            {
+                var fs = new Model.Filesystem();
+                var memberlist = fs.getData();
+                var m = new Model.MemberList(memberlist);
+                var v = new View.UserView();
 
-            var mc = new Controller.MainController();
+                var mc = new Controller.MainController(fs);
 
-            while (mc.start(v, m)) ;
+                while (mc.start(v, m)) ;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }
