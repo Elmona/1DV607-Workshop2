@@ -165,7 +165,6 @@ namespace View
                     Console.WriteLine(member.toStringVerbose());
                     Console.ResetColor();
                     Console.WriteLine("\nPlease enter the id of the boat you want to delete.");
-                    Console.WriteLine("Enter '0' to return.");
                     Console.Write(": ");
                 } while (!int.TryParse(Console.ReadLine(), out boatIdToBeDeleted));
 
@@ -203,17 +202,17 @@ namespace View
 
         public Model.Boat addBoat()
         {
-            int boatId;
+            // int boatId;
             int boatLength;
             int correctChoice;
 
             Console.WriteLine("\nYou chose to add a boat.");
             Console.WriteLine("--------------------------------");
-            do
-            {
-                Console.WriteLine("\nPlease enter the id of the boat you want to add.");
-                Console.Write(": ");
-            } while (!int.TryParse(Console.ReadLine(), out boatId));
+            // do
+            // {
+            //     Console.WriteLine("\nPlease enter the id of the boat you want to add.");
+            //     Console.Write(": ");
+            // } while (!int.TryParse(Console.ReadLine(), out boatId));
             do
             {
                 Console.WriteLine("\nPlease enter the length of the boat you want to add (in centimeters)");
@@ -237,21 +236,22 @@ namespace View
             Console.WriteLine("\nPress any key to return to main menu.");
             Console.ReadKey();
 
-            return new Model.Boat(boatId, returnType, boatLength);
+            return new Model.Boat(returnType, boatLength);
         }
 
-        public Model.Boat selectBoat(Model.Member member)
+        public int selectBoat(Model.Member member)
         {
-            int boatId;
+            int boatIndex;
 
             Console.WriteLine(member.toStringVerbose());
             do
             {
                 Console.WriteLine("Select which boat to change.");
                 Console.Write(": ");
-            } while (!int.TryParse(Console.ReadLine(), out boatId));
+            } while (!int.TryParse(Console.ReadLine(), out boatIndex));
 
-            return member.GetBoat(boatId);
+            return boatIndex;
+            // return member.GetBoat(boatIndex);
         }
 
         public int getUserId()
