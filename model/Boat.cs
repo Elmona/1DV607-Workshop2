@@ -24,24 +24,6 @@ namespace Model
                 _type = value;
             }
         }
-        // public int Id
-        // {
-        //     get
-        //     {
-        //         return _id;
-        //     }
-        //     set
-        //     {
-        //         if (value > 0)
-        //         {
-        //             _id = value;
-        //         }
-        //         else
-        //         {
-        //             throw new ArgumentOutOfRangeException("Id of a boat must be a positive number! (Greater than zero)");
-        //         }
-        //     }
-        // }
 
         public int Length
         {
@@ -66,7 +48,4 @@ namespace Model
 
 
     }
-
-
-
 }
