@@ -40,9 +40,5 @@ namespace Model
                 }
             }
         }
-        // public override string ToString()
-        // {
-        //     return $"Boat of type {this.Type} | Length of boat: {this.Length}";
-        // }
     }
 }
