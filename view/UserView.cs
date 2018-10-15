@@ -96,7 +96,7 @@ namespace View
         {
             for (int i = 0; i < boats.Count; i++)
             {
-                Console.WriteLine($"Boat ID: {i} {boats[i].Type,15} {boats[i].Length} cm");
+                Console.WriteLine($"    Boat ID: {i} {boats[i].Type,15} {boats[i].Length} cm");
             }
         }
 
