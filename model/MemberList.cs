@@ -13,6 +13,7 @@ namespace Model
 
         public void addMember(Member member)
         {
+            member.MemberId = this.getNextId();
             _members.Add(member);
         }
 
@@ -44,7 +45,7 @@ namespace Model
             return memberFound;
         }
 
-        public int getNextId()
+        private int getNextId()
         {
             int maxValue = 1;
             foreach (var member in _members)

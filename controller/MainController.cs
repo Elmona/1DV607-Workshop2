@@ -30,7 +30,7 @@ namespace Controller
                     break;
 
                 case View.UserView.Event.AddMember:
-                    m.addMember(v.addMember(m.getNextId()));
+                    m.addMember(v.addMember());
                     _fs.saveData(m.getMemberList());
                     break;
 
