@@ -25,7 +25,7 @@ namespace Model
             }
         }
 
-        public void saveData(List<Member> members)
+        public void saveData(IEnumerable<Member> members)
         {
             var data = JsonConvert.SerializeObject(members);
             File.WriteAllText(fileName, data);

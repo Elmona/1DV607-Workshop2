@@ -69,16 +69,24 @@ namespace View
             return Event.None;
         }
 
-        public void viewMemberListCompact(List<Model.Member> m)
+        public void viewMemberListCompact(IEnumerable<Model.Member> members)
         {
             Console.WriteLine("\nViewing Compact");
-            m.ForEach(i => viewMemberCompact(i));
+
+            foreach (var member in members)
+            {
+                viewMemberCompact(member);
+            }
         }
 
-        public void viewMemberListVerbose(List<Model.Member> m)
+        public void viewMemberListVerbose(IEnumerable<Model.Member> members)
         {
             Console.WriteLine("\nViewing Verbose");
-            m.ForEach(i => viewMemberVerbose(i));
+
+            foreach (var member in members)
+            {
+                viewMemberVerbose(member);
+            }
         }
 
         public void viewMemberVerbose(Model.Member m)

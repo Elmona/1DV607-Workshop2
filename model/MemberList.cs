@@ -16,7 +16,7 @@ namespace Model
             _members.Add(member);
         }
 
-        public List<Member> getMemberList() => _members;
+        public IEnumerable<Member> getMemberList() => _members;
 
         public Member getMemberById(int id)
         {
