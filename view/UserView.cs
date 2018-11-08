@@ -104,11 +104,11 @@ namespace View
         {
             for (int i = 0; i < boats.Count; i++)
             {
-                Console.WriteLine($"Boat ID: {i} {boats[i].Type,15} {boats[i].Length} cm");
+                Console.WriteLine($"    Boat ID: {i} {boats[i].Type,15} {boats[i].Length} cm");
             }
         }
 
-        public Model.Member addMember(int id)
+        public Model.Member addMember()
         {
             string name;
             long socialNumber;
@@ -133,7 +133,7 @@ namespace View
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
 
-            return new Model.Member(name, id, socialNumber);
+            return new Model.Member(name, 1, socialNumber);
         }
 
         public Model.Member editMember(int id)
