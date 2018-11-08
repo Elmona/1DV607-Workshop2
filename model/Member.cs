@@ -34,13 +34,17 @@ namespace Model
             }
         }
 
-        public List<Model.Boat> Boats
+        private List<Model.Boat> Boats
         {
-            get { return _boats; }
-            private set
+            set
             {
                 _boats = value;
             }
+        }
+
+        public IEnumerable<Model.Boat> getBoats()
+        {
+            return this._boats;
         }
 
         public int MemberId
@@ -57,6 +61,11 @@ namespace Model
                     throw new ArgumentOutOfRangeException("MemberId of a member must be a positive number over 0");
                 }
             }
+        }
+
+        public int getNumberOfBoats()
+        {
+            return this._boats.Count;
         }
 
         public bool hasBoats()
